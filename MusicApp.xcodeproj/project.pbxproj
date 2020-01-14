@@ -13,6 +13,7 @@
 		CE7AB71D23CDD93E00CF9EF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB71B23CDD93E00CF9EF8 /* Main.storyboard */; };
 		CE7AB71F23CDD93F00CF9EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */; };
 		CE7AB72223CDD93F00CF9EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB72023CDD93F00CF9EF8 /* LaunchScreen.storyboard */; };
+		CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7AB72123CDD93F00CF9EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7AB72323CDD93F00CF9EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		CE7AB71423CDD93E00CF9EF8 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */,
 				CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */,
 				CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */,
 				CE7AB71923CDD93E00CF9EF8 /* ViewController.swift */,
@@ -140,6 +143,7 @@
 			files = (
 				CE7AB71A23CDD93E00CF9EF8 /* ViewController.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
+				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
 				CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
