@@ -16,8 +16,8 @@ enum TabBarType: CaseIterable {
     
     var title: String {
         switch self {
-        case .search: return "Search"
-        case .library: return "Library"
+        case .search: return "Search".localized()
+        case .library: return "Library".localized()
         }
     }
     

@@ -15,6 +15,8 @@
 		CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */; };
 		CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */; };
 		CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB73223CDEF0E00CF9EF8 /* TabBarType.swift */; };
+		CE7AB73723CDF00900CF9EF8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB73923CDF00900CF9EF8 /* Localizable.strings */; };
+		CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,10 @@
 		CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE7AB73223CDEF0E00CF9EF8 /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
+		CE7AB73423CDEFC400CF9EF8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CE7AB73823CDF00900CF9EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE7AB73A23CDF00E00CF9EF8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +67,13 @@
 			isa = PBXGroup;
 			children = (
 				CE7AB72E23CDEE9E00CF9EF8 /* Scene */,
+				CE7AB73B23CDF09200CF9EF8 /* Common */,
 				CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */,
 				CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */,
 				CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */,
 				CE7AB72023CDD93F00CF9EF8 /* LaunchScreen.storyboard */,
 				CE7AB72323CDD93F00CF9EF8 /* Info.plist */,
+				CE7AB73923CDF00900CF9EF8 /* Localizable.strings */,
 			);
 			path = MusicApp;
 			sourceTree = "<group>";
@@ -103,6 +111,14 @@
 				CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		CE7AB73B23CDF09200CF9EF8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +164,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = CE7AB70923CDD93E00CF9EF8;
 			productRefGroup = CE7AB71323CDD93E00CF9EF8 /* Products */;
@@ -165,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7AB72223CDD93F00CF9EF8 /* LaunchScreen.storyboard in Resources */,
+				CE7AB73723CDF00900CF9EF8 /* Localizable.strings in Resources */,
 				CE7AB71F23CDD93F00CF9EF8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +217,7 @@
 			files = (
 				CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */,
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
+				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
 				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
@@ -213,8 +232,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE7AB72123CDD93F00CF9EF8 /* Base */,
+				CE7AB73423CDEFC400CF9EF8 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CE7AB73923CDF00900CF9EF8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE7AB73823CDF00900CF9EF8 /* en */,
+				CE7AB73A23CDF00E00CF9EF8 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -224,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -284,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
