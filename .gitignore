@@ -1,0 +1,6 @@
+# Xcode
+#
+# gitignore contributors
+
+## User settings
+xcuserdata/
