@@ -14,6 +14,7 @@
 		CE7AB72223CDD93F00CF9EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB72023CDD93F00CF9EF8 /* LaunchScreen.storyboard */; };
 		CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */; };
 		CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */; };
+		CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB73223CDEF0E00CF9EF8 /* TabBarType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CE7AB72323CDD93F00CF9EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CE7AB73223CDEF0E00CF9EF8 /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +60,7 @@
 		CE7AB71423CDD93E00CF9EF8 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */,
-				CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */,
-				CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */,
+				CE7AB72E23CDEE9E00CF9EF8 /* Scene */,
 				CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */,
 				CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */,
 				CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */,
@@ -68,6 +68,41 @@
 				CE7AB72323CDD93F00CF9EF8 /* Info.plist */,
 			);
 			path = MusicApp;
+			sourceTree = "<group>";
+		};
+		CE7AB72E23CDEE9E00CF9EF8 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB72F23CDEEAE00CF9EF8 /* MainTabBar */,
+				CE7AB73023CDEED900CF9EF8 /* Search */,
+				CE7AB73123CDEEE300CF9EF8 /* Library */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		CE7AB72F23CDEEAE00CF9EF8 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB72923CDDC8B00CF9EF8 /* MainTabBarController.swift */,
+				CE7AB73223CDEF0E00CF9EF8 /* TabBarType.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		CE7AB73023CDEED900CF9EF8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CE7AB73123CDEEE300CF9EF8 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +200,7 @@
 				CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */,
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
+				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
 				CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */,
 			);

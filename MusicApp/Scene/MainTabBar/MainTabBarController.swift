@@ -9,17 +9,11 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let searchViewController = SearchViewController()
-        let libraryViewController = LibraryViewController()
-        
-        viewControllers = [
-            searchViewController,
-            libraryViewController
-        ]
+        viewControllers = TabBarType.allCases.map { $0.buildViewController() }
     }
 
 }
