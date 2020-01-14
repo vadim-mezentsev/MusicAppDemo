@@ -12,8 +12,14 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .gray
+        
+        let searchViewController = SearchViewController()
+        let libraryViewController = LibraryViewController()
+        
+        viewControllers = [
+            searchViewController,
+            libraryViewController
+        ]
     }
 
 }
