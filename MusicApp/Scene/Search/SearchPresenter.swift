@@ -9,11 +9,12 @@
 import Foundation
 
 protocol SearchPresenterLogic: class {
-    //func fetchForecast(for sign: Sign)
+    func presentTracks(_ tracks: [TrackContentModel])
+    func presentError(_ message: String)
 }
 
 class SearchPresenter: SearchPresenterLogic {
-    
+
     // MARK: - Properties
     
     weak var viewController: SearchViewDisplayLogic?
@@ -23,5 +24,18 @@ class SearchPresenter: SearchPresenterLogic {
     init(viewController: SearchViewDisplayLogic) {
         self.viewController = viewController
     }
+
+    // MARK: - SearchPresenterLogic
     
+    func presentTracks(_ tracks: [TrackContentModel]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayTracks(tracks)
+        }
+    }
+    
+    func presentError(_ message: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayError(message)
+        }
+    }
 }

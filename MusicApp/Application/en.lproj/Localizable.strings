@@ -1,5 +1,7 @@
 "Search" = "Search";
 "Library" = "Library";
-"SearchBarPlaceholder" = "Search";
+"SearchBarPlaceholder" = "Music";
 "Error parsing JSON." = "Error parsing JSON.";
 "Invalid response format." = "Invalid response format.";
+"Your search returned no results" = "Your search returned no results";
+"Enter your search term above" = "Enter your search term above";

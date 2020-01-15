@@ -1,5 +1,7 @@
 "Search" = "Поиск";
 "Library" = "Библиотека";
-"SearchBarPlaceholder" = "Поиск";
+"SearchBarPlaceholder" = "Музыка";
 "Error parsing JSON." = "Ошибка парсинга JSON.";
 "Invalid response format." = "Неверный формат ответа сервера.";
+"Your search returned no results" = "По Вашему запросу результаты не найдены.";
+"Enter your search term above" = "Введите Ваш поисковой запрос";

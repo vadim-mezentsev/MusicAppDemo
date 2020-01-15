@@ -8,21 +8,17 @@
 
 import UIKit
 
-struct TrackCellModel {
-    let trackName: String
-    let artistName: String
-}
-
 protocol SearchViewDisplayLogic: class {
-    //func displayForecast(viewModel: ForecastViewModel)
-    //func displayError(message: String)
+    func displayTracks(_ tracks: [TrackContentModel])
+    func displayError(_ message: String)
 }
 
-class SearchViewController: UIViewController, SearchViewDisplayLogic {
+class SearchViewController: UIViewController {
 
     // MARK: - Types
     
     enum State {
+        case wait
         case loading
         case show
         case error
@@ -30,8 +26,11 @@ class SearchViewController: UIViewController, SearchViewDisplayLogic {
     
     // MARK: - View data
     
-    var cellViewModels: [TrackCellModel] = [TrackCellModel(trackName: "Tr1", artistName: "An1"),
-                                            TrackCellModel(trackName: "Tr2", artistName: "An2")]
+    var cellViewModels: [TrackContentModel] = [] {
+        didSet {
+            searchView.tableView.reloadData()
+        }
+    }
     
     // MARK: - Properties
     
@@ -41,6 +40,7 @@ class SearchViewController: UIViewController, SearchViewDisplayLogic {
             changeState(to: state)
         }
     }
+    private var timer: Timer?
     
     // MARK: - Load view
     
@@ -79,15 +79,21 @@ class SearchViewController: UIViewController, SearchViewDisplayLogic {
     // MARK: - Interface preparation
 
     private func setupView() {
+        state = .wait
+        
         navigationItem.searchController = searchView.searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         
         searchView.searchController.searchBar.delegate = self
         searchView.tableView.dataSource = self
+        searchView.tableView.delegate = self
     }
     
     private func changeState(to state: SearchViewController.State) {
         switch state {
+        case .wait:
+            searchView.hintLabel.text = "Enter your search term above".localized()
+            searchView.hideSubviews(except: [searchView.hintLabel, searchView.searchController.searchBar])
         case .loading:
             searchView.activityIndicator.startAnimating()
             searchView.hideSubviews(except: [searchView.activityIndicator])
@@ -100,6 +106,21 @@ class SearchViewController: UIViewController, SearchViewDisplayLogic {
         }
     }
     
+}
+
+// MARK: - SearchViewDisplayLogic
+
+extension SearchViewController: SearchViewDisplayLogic {
+    
+    func displayTracks(_ tracks: [TrackContentModel]) {
+        cellViewModels = tracks
+        state = .show
+    }
+    
+    func displayError(_ message: String) {
+        searchView.hintLabel.text = message
+        state = .error
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -120,12 +141,41 @@ extension SearchViewController: UITableViewDataSource {
     
 }
 
+// MARK: - UITableViewDelegate
+
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchView.searchController.searchBar.resignFirstResponder()
+    }
+}
+
 // MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        
+        timer?.invalidate()
+        
+        guard !searchText.isEmpty else {
+            state = .wait
+            return
+        }
+    
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            self?.state = .loading
+            self?.interactor.fetchTracks(for: searchText)
+        }
     }
 
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        state = .wait
+        cellViewModels = []
+    }
+    
 }

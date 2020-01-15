@@ -37,7 +37,6 @@ class SearchView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.isHidden = true
         return label
     }()
     
@@ -59,7 +58,7 @@ class SearchView: UIView {
         backgroundColor = .systemBackground
         setupTableView()
         setupActivityIndicator()
-        setupTableView()
+        setupHintLabel()
     }
     
     private func setupTableView() {

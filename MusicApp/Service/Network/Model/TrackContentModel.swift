@@ -11,7 +11,7 @@ import Foundation
 struct TrackContentModel: Decodable {
     let trackName: String
     let artistName: String
-    let collectionName: String
+    let collectionName: String?
     let previewUrl: String?
     let artworkUrl100: String?
 }
