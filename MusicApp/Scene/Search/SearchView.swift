@@ -14,7 +14,8 @@ class SearchView: UIView {
 
     lazy var searchController: UISearchController = {
         let searchController = UISearchController()
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "SearchBarPlaceholder".localized()
+        searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
     
@@ -24,7 +25,22 @@ class SearchView: UIView {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
-
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
+    lazy var hintLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -42,6 +58,8 @@ class SearchView: UIView {
     private func setupView() {
         backgroundColor = .systemBackground
         setupTableView()
+        setupActivityIndicator()
+        setupTableView()
     }
     
     private func setupTableView() {
@@ -52,5 +70,19 @@ class SearchView: UIView {
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
+ 
+    private func setupActivityIndicator() {
+        addSubview(activityIndicator)
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        activityIndicator.topAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+    }
     
+    private func setupHintLabel() {
+        addSubview(hintLabel)
+        
+        hintLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.7).isActive = true
+        hintLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        hintLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+    }
 }

@@ -13,12 +13,34 @@ struct TrackCellModel {
     let artistName: String
 }
 
-class SearchViewController: UIViewController {
+protocol SearchViewDisplayLogic: class {
+    //func displayForecast(viewModel: ForecastViewModel)
+    //func displayError(message: String)
+}
 
+class SearchViewController: UIViewController, SearchViewDisplayLogic {
+
+    // MARK: - Types
+    
+    enum State {
+        case loading
+        case show
+        case error
+    }
+    
     // MARK: - View data
     
     var cellViewModels: [TrackCellModel] = [TrackCellModel(trackName: "Tr1", artistName: "An1"),
                                             TrackCellModel(trackName: "Tr2", artistName: "An2")]
+    
+    // MARK: - Properties
+    
+    var interactor: SearchInteractorLogic!
+    var state: SearchViewController.State! {
+        didSet {
+            changeState(to: state)
+        }
+    }
     
     // MARK: - Load view
     
@@ -26,12 +48,34 @@ class SearchViewController: UIViewController {
     override func loadView() {
         view = searchView
     }
+
+    // MARK: - Init
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        setupScene()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupScene()
+    }
+    
+    // MARK: Setup scene
+    
+    private func setupScene() {
+        let presenter = SearchPresenter(viewController: self)
+        let interactor = SearchInteractor(presenter: presenter)
+        self.interactor = interactor
+    }
+
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-
+    
     // MARK: - Interface preparation
 
     private func setupView() {
@@ -40,6 +84,20 @@ class SearchViewController: UIViewController {
         
         searchView.searchController.searchBar.delegate = self
         searchView.tableView.dataSource = self
+    }
+    
+    private func changeState(to state: SearchViewController.State) {
+        switch state {
+        case .loading:
+            searchView.activityIndicator.startAnimating()
+            searchView.hideSubviews(except: [searchView.activityIndicator])
+        case .show:
+            searchView.activityIndicator.stopAnimating()
+            searchView.showSubviews(except: [searchView.activityIndicator, searchView.hintLabel])
+        case .error:
+            searchView.activityIndicator.stopAnimating()
+            searchView.hideSubviews(except: [searchView.hintLabel])
+        }
     }
     
 }
