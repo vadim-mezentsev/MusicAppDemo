@@ -1,3 +1,5 @@
 "Search" = "Search";
 "Library" = "Library";
 "SearchBarPlaceholder" = "Search";
+"Error parsing JSON." = "Error parsing JSON.";
+"Invalid response format." = "Invalid response format.";

@@ -10,6 +10,12 @@
 		CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */; };
 		CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */; };
 		CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */; };
+		CE3A3B7723CF2F5400A3AC06 /* ItunesUrlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7623CF2F5400A3AC06 /* ItunesUrlHelper.swift */; };
+		CE3A3B7923CF31DF00A3AC06 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7823CF31DF00A3AC06 /* NetworkError.swift */; };
+		CE3A3B7B23CF320500A3AC06 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7A23CF320500A3AC06 /* NetworkService.swift */; };
+		CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7C23CF334C00A3AC06 /* ApiResponse.swift */; };
+		CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7E23CF35AF00A3AC06 /* TracksResponce.swift */; };
+		CE3A3B8123CF35F300A3AC06 /* TrackContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8023CF35F300A3AC06 /* TrackContentModel.swift */; };
 		CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */; };
 		CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */; };
 		CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */; };
@@ -27,6 +33,12 @@
 		CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
+		CE3A3B7623CF2F5400A3AC06 /* ItunesUrlHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesUrlHelper.swift; sourceTree = "<group>"; };
+		CE3A3B7823CF31DF00A3AC06 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CE3A3B7A23CF320500A3AC06 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CE3A3B7C23CF334C00A3AC06 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		CE3A3B7E23CF35AF00A3AC06 /* TracksResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksResponce.swift; sourceTree = "<group>"; };
+		CE3A3B8023CF35F300A3AC06 /* TrackContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackContentModel.swift; sourceTree = "<group>"; };
 		CE7AB71223CDD93E00CF9EF8 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +67,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE3A3B7323CF2E9F00A3AC06 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CE3A3B7423CF2EAC00A3AC06 /* Network */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CE3A3B7423CF2EAC00A3AC06 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE3A3B7523CF2EBA00A3AC06 /* Model */,
+				CE3A3B7A23CF320500A3AC06 /* NetworkService.swift */,
+				CE3A3B7623CF2F5400A3AC06 /* ItunesUrlHelper.swift */,
+				CE3A3B7823CF31DF00A3AC06 /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE3A3B7523CF2EBA00A3AC06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE3A3B7C23CF334C00A3AC06 /* ApiResponse.swift */,
+				CE3A3B7E23CF35AF00A3AC06 /* TracksResponce.swift */,
+				CE3A3B8023CF35F300A3AC06 /* TrackContentModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CE7AB70923CDD93E00CF9EF8 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7AB73E23CDF1CF00CF9EF8 /* Application */,
+				CE3A3B7323CF2E9F00A3AC06 /* Service */,
 				CE7AB72E23CDEE9E00CF9EF8 /* Scene */,
 				CE7AB73B23CDF09200CF9EF8 /* Common */,
 			);
@@ -238,13 +280,19 @@
 				CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */,
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
+				CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */,
+				CE3A3B7723CF2F5400A3AC06 /* ItunesUrlHelper.swift in Sources */,
 				CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */,
+				CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
+				CE3A3B7B23CF320500A3AC06 /* NetworkService.swift in Sources */,
 				CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */,
 				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
 				CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
+				CE3A3B7923CF31DF00A3AC06 /* NetworkError.swift in Sources */,
 				CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */,
+				CE3A3B8123CF35F300A3AC06 /* TrackContentModel.swift in Sources */,
 				CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

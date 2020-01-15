@@ -1,3 +1,5 @@
 "Search" = "Поиск";
 "Library" = "Библиотека";
 "SearchBarPlaceholder" = "Поиск";
+"Error parsing JSON." = "Ошибка парсинга JSON.";
+"Invalid response format." = "Неверный формат ответа сервера.";
