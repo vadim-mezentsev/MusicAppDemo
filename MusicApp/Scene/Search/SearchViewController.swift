@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SearchViewDisplayLogic: class {
-    func displayTracks(_ tracks: [TrackContentModel])
+    func displayTracks(_ trackCellModels: [TrackCellModel])
     func displayError(_ message: String)
 }
 
@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
     
     // MARK: - View data
     
-    var cellViewModels: [TrackContentModel] = [] {
+    var cellViewModels: [TrackCellModel] = [] {
         didSet {
             searchView.tableView.reloadData()
         }
@@ -112,8 +112,8 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: SearchViewDisplayLogic {
     
-    func displayTracks(_ tracks: [TrackContentModel]) {
-        cellViewModels = tracks
+    func displayTracks(_ trackCellModels: [TrackCellModel]) {
+        cellViewModels = trackCellModels
         state = .show
     }
     
@@ -133,9 +133,8 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = cellViewModels[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "\(cellViewModel.trackName) \(cellViewModel.artistName)"
-        cell.imageView?.image = UIImage(systemName: "music.mic")
+        let cell = tableView.dequeueReusableCell(withIdentifier: TrackCell.reuseId, for: indexPath) as! TrackCell
+        cell.set(from: cellViewModel)
         return cell
     }
     

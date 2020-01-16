@@ -16,6 +16,10 @@
 		CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7C23CF334C00A3AC06 /* ApiResponse.swift */; };
 		CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7E23CF35AF00A3AC06 /* TracksResponce.swift */; };
 		CE3A3B8123CF35F300A3AC06 /* TrackContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8023CF35F300A3AC06 /* TrackContentModel.swift */; };
+		CE3A3B8423CF71FF00A3AC06 /* IdentifiableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */; };
+		CE3A3B8723CF725900A3AC06 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8523CF725900A3AC06 /* TrackCell.swift */; };
+		CE3A3B8823CF725900A3AC06 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A3B8623CF725900A3AC06 /* TrackCell.xib */; };
+		CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */; };
 		CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */; };
 		CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */; };
 		CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */; };
@@ -39,6 +43,10 @@
 		CE3A3B7C23CF334C00A3AC06 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		CE3A3B7E23CF35AF00A3AC06 /* TracksResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksResponce.swift; sourceTree = "<group>"; };
 		CE3A3B8023CF35F300A3AC06 /* TrackContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackContentModel.swift; sourceTree = "<group>"; };
+		CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCellProtocol.swift; sourceTree = "<group>"; };
+		CE3A3B8523CF725900A3AC06 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		CE3A3B8623CF725900A3AC06 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		CE7AB71223CDD93E00CF9EF8 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CE3A3B8223CF71AA00A3AC06 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CE3A3B8523CF725900A3AC06 /* TrackCell.swift */,
+				CE3A3B8623CF725900A3AC06 /* TrackCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		CE7AB70923CDD93E00CF9EF8 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +162,7 @@
 		CE7AB73023CDEED900CF9EF8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				CE3A3B8223CF71AA00A3AC06 /* Cell */,
 				CE7AB73F23CE0AF900CF9EF8 /* SearchView.swift */,
 				CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */,
 				CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */,
@@ -166,6 +184,8 @@
 			children = (
 				CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */,
 				CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */,
+				CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */,
+				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -246,6 +266,7 @@
 				CE7AB72223CDD93F00CF9EF8 /* LaunchScreen.storyboard in Resources */,
 				CE7AB73723CDF00900CF9EF8 /* Localizable.strings in Resources */,
 				CE7AB71F23CDD93F00CF9EF8 /* Assets.xcassets in Resources */,
+				CE3A3B8823CF725900A3AC06 /* TrackCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +301,7 @@
 				CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */,
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
+				CE3A3B8423CF71FF00A3AC06 /* IdentifiableCellProtocol.swift in Sources */,
 				CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */,
 				CE3A3B7723CF2F5400A3AC06 /* ItunesUrlHelper.swift in Sources */,
 				CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */,
@@ -289,9 +311,11 @@
 				CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */,
 				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
 				CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */,
+				CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
 				CE3A3B7923CF31DF00A3AC06 /* NetworkError.swift in Sources */,
 				CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */,
+				CE3A3B8723CF725900A3AC06 /* TrackCell.swift in Sources */,
 				CE3A3B8123CF35F300A3AC06 /* TrackContentModel.swift in Sources */,
 				CE7AB71823CDD93E00CF9EF8 /* SceneDelegate.swift in Sources */,
 			);

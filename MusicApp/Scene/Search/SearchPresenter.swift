@@ -28,8 +28,17 @@ class SearchPresenter: SearchPresenterLogic {
     // MARK: - SearchPresenterLogic
     
     func presentTracks(_ tracks: [TrackContentModel]) {
+        
+        let trackCellModels = tracks.map { (trackContentModel) -> TrackCellModel in
+            let imageUrl = trackContentModel.artworkUrl100 != nil ? URL(string: trackContentModel.artworkUrl100!) : nil
+            return TrackCellModel(imageUrl: imageUrl,
+                                  trackTitle: trackContentModel.trackName,
+                                  artist: trackContentModel.artistName,
+                                  collection: trackContentModel.collectionName ?? "Unknown".localized())
+        }
+        
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.displayTracks(tracks)
+            self?.viewController?.displayTracks(trackCellModels)
         }
     }
     

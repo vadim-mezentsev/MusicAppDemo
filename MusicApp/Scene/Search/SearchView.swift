@@ -22,7 +22,8 @@ class SearchView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(TrackCell.nib, forCellReuseIdentifier: TrackCell.reuseId)
+        tableView.rowHeight = 84
         return tableView
     }()
     
