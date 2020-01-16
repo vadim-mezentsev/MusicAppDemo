@@ -31,6 +31,7 @@
 		CE7AB73723CDF00900CF9EF8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE7AB73923CDF00900CF9EF8 /* Localizable.strings */; };
 		CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */; };
 		CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AB73F23CE0AF900CF9EF8 /* SearchView.swift */; };
+		CE8EECC923D06B000078745B /* UITableView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EECC823D06B000078745B /* UITableView + extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		CE7AB73A23CDF00E00CF9EF8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		CE7AB73F23CE0AF900CF9EF8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		CE8EECC823D06B000078745B /* UITableView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			children = (
 				CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */,
 				CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */,
+				CE8EECC823D06B000078745B /* UITableView + extension.swift */,
 				CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */,
 				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
 			);
@@ -310,6 +313,7 @@
 				CE3A3B7B23CF320500A3AC06 /* NetworkService.swift in Sources */,
 				CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */,
 				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
+				CE8EECC923D06B000078745B /* UITableView + extension.swift in Sources */,
 				CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */,
 				CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,

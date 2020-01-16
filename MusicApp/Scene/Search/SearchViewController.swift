@@ -82,7 +82,7 @@ class SearchViewController: UIViewController {
         state = .wait
         
         navigationItem.searchController = searchView.searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         searchView.searchController.searchBar.delegate = self
         searchView.tableView.dataSource = self
@@ -93,7 +93,7 @@ class SearchViewController: UIViewController {
         switch state {
         case .wait:
             searchView.hintLabel.text = "Enter your search term above".localized()
-            searchView.hideSubviews(except: [searchView.hintLabel, searchView.searchController.searchBar])
+            searchView.hideSubviews(except: [searchView.hintLabel])
         case .loading:
             searchView.activityIndicator.startAnimating()
             searchView.hideSubviews(except: [searchView.activityIndicator])
@@ -174,6 +174,7 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         state = .wait
+        searchView.tableView.stopDecelerating()
         cellViewModels = []
     }
     
