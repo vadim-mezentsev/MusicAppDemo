@@ -13,6 +13,7 @@ struct TrackCellModel {
     let trackTitle: String
     let artist: String
     let collection: String
+    let previewUrl: String?
 }
 
 class TrackCell: UITableViewCell, IdentifiableCellFromNib {

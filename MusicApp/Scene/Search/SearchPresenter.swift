@@ -34,7 +34,8 @@ class SearchPresenter: SearchPresenterLogic {
             return TrackCellModel(imageUrl: imageUrl,
                                   trackTitle: trackContentModel.trackName,
                                   artist: trackContentModel.artistName,
-                                  collection: trackContentModel.collectionName ?? "Unknown".localized())
+                                  collection: trackContentModel.collectionName ?? "Unknown".localized(),
+                                  previewUrl: trackContentModel.previewUrl)
         }
         
         DispatchQueue.main.async { [weak self] in

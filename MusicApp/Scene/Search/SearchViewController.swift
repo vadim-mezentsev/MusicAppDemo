@@ -146,6 +146,11 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cellModel = cellViewModels[indexPath.row]
+        let mainPlayerViewController = MainPlayerViewController()
+        mainPlayerViewController.trackModel = cellModel
+        present(mainPlayerViewController, animated: true, completion: nil)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
