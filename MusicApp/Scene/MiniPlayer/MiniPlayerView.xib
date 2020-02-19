@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,12 +13,88 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="MiniPlayerView" customClass="MiniPlayerView" customModule="MusicApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="73"/>
+            <rect key="frame" x="0.0" y="0.0" width="351" height="73"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-At-8PR">
+                    <rect key="frame" x="15" y="8" width="324" height="57"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qna-3z-CwQ" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="1.5" width="57" height="55"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="qna-3z-CwQ" secondAttribute="height" multiplier="1:1" id="wTK-Bh-uhS"/>
+                            </constraints>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="31"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4O-5T-0kQ">
+                            <rect key="frame" x="67" y="0.0" width="123" height="57"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3c-er-WSn">
+                            <rect key="frame" x="200" y="0.0" width="57" height="57"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="T3c-er-WSn" secondAttribute="height" multiplier="1:1" id="uf1-fL-Eyz"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <state key="normal" image="pause.fill" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                            </state>
+                            <connections>
+                                <action selector="playPouseButtonTapped:" destination="-1" eventType="touchUpInside" id="JmX-aO-XXF"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOh-BL-9wK">
+                            <rect key="frame" x="267" y="0.0" width="57" height="57"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="YOh-BL-9wK" secondAttribute="height" multiplier="1:1" id="sUw-EO-27y"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <state key="normal" image="forward.fill" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
+                            </state>
+                            <connections>
+                                <action selector="nextTrackButtonTapped:" destination="-1" eventType="touchUpInside" id="Zm9-Qa-Gcy"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="qna-3z-CwQ" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="PgM-2d-cTg"/>
+                        <constraint firstItem="YOh-BL-9wK" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="b0v-6f-GPw"/>
+                        <constraint firstItem="T3c-er-WSn" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="p4j-d9-2bY"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="s4O-At-8PR" secondAttribute="trailing" constant="12" id="8YD-F5-RWa"/>
+                <constraint firstItem="s4O-At-8PR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="b5x-lm-fCR"/>
+                <constraint firstAttribute="bottom" secondItem="s4O-At-8PR" secondAttribute="bottom" constant="8" id="ijd-58-CAt"/>
+                <constraint firstItem="s4O-At-8PR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="mOQ-r1-MoH"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="131.8840579710145" y="-143.63839285714286"/>
+            <connections>
+                <outlet property="nextButton" destination="YOh-BL-9wK" id="FTd-D7-vLX"/>
+                <outlet property="playPouseButton" destination="T3c-er-WSn" id="JTe-ZS-lFO"/>
+                <outlet property="trackImageView" destination="qna-3z-CwQ" id="V7n-go-jB8"/>
+                <outlet property="trackTitleLabel" destination="a4O-5T-0kQ" id="Nhb-Th-TY1"/>
+                <outletCollection property="gestureRecognizers" destination="kxN-7a-KZf" appends="YES" id="lKK-NJ-giI"/>
+            </connections>
+            <point key="canvasLocation" x="86.231884057971016" y="-143.63839285714286"/>
         </view>
+        <tapGestureRecognizer id="kxN-7a-KZf">
+            <connections>
+                <action selector="viewTapped:" destination="-1" id="69H-W8-m35"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="forward.fill" catalog="system" width="64" height="38"/>
+        <image name="music.note" catalog="system" width="48" height="64"/>
+        <image name="pause.fill" catalog="system" width="58" height="64"/>
+    </resources>
 </document>

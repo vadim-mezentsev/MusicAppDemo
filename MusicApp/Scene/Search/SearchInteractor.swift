@@ -50,6 +50,7 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
                     self?.presenter.presentError("Your search returned no results".localized())
                 } else {
                     self?.tracks = responce.results
+                    self?.currentTrackIndex = nil
                     self?.presenter.presentTracks(responce.results)
                 }
             case .failure(let error):

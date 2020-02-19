@@ -83,7 +83,7 @@ class AVPlayerService: PlayerService {
     private func addStartPlaybackObserver() {
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
-        player.addBoundaryTimeObserver(forTimes: times, queue: DispatchQueue.main) { [weak self] in
+        player.addBoundaryTimeObserver(forTimes: times, queue: completionQueue) { [weak self] in
             self?.delegate?.playDidStart()
         }
     }

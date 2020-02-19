@@ -21,17 +21,20 @@ class MainCoordinator: Coordinator {
     var searchViewController: SearchViewController!
     var libraryViewController: LibraryViewController!
     var mainPlayerViewController: MainPlayerViewController!
+    var miniPlayerViewController: MiniPlayerViewController!
     
     // MARK: - Init
     
     init(window: UIWindow) {
         self.window = window
-        
-        rootViewController = MainTabBarController()
+    
         searchViewController = createSearchViewController()
         libraryViewController = createLibraryViewController()
         mainPlayerViewController = createMainPlayerViewController()
+        miniPlayerViewController = createMiniPlayerViewController()
         
+        rootViewController = MainTabBarController()
+        rootViewController.miniPlayerController = miniPlayerViewController
         rootViewController.viewControllers = [
             TabBarType.search.buildNavigationController(for: searchViewController),
             TabBarType.library.buildNavigationController(for: libraryViewController)
@@ -54,7 +57,8 @@ class MainCoordinator: Coordinator {
     }
     
     private func searchViewControllerPlayTrackHandler(trackModel: TrackContentModel) {
-        presentMainPlayer(model: trackModel)
+        mainPlayerViewController.input.setTrack(from: trackModel)
+        miniPlayerViewController.input.setTrack(from: trackModel)
     }
 
     // MARK: - LibraryViewController setup
@@ -70,6 +74,7 @@ class MainCoordinator: Coordinator {
         let mainPlayerViewController = MainPlayerViewController()
         mainPlayerViewController.output.playNextTrackHandler = mainPlayerViewControllerPlayNextTrackHandler
         mainPlayerViewController.output.playPreviousTrackHandler = mainPlayerViewControllerPlayPreviousTrackHandler
+        mainPlayerViewController.output.playerStatusToggleHandler = mainPlayerViewControllerPlayerStatusToggleHandler
         return mainPlayerViewController
     }
     
@@ -81,10 +86,30 @@ class MainCoordinator: Coordinator {
         searchViewController.input.playPreviousTrack()
     }
 
-    private func presentMainPlayer(model: TrackContentModel) {
-        mainPlayerViewController.input.setTrack(from: model)
-        if mainPlayerViewController.view.window == nil {
-            rootViewController.present(mainPlayerViewController, animated: true)
-        }
+    private func mainPlayerViewControllerPlayerStatusToggleHandler() {
+        miniPlayerViewController.input.togglePlayerStatus()
     }
+    
+    // MARK: - MiniPlayerViewController setup
+    
+    private func createMiniPlayerViewController() -> MiniPlayerViewController {
+        let miniPlayerViewController = MiniPlayerViewController()
+        miniPlayerViewController.output.playerStatusToggleHandler = miniPlayerViewControllerPlayerStatusToggleHandler
+        miniPlayerViewController.output.playNextTrackHandler = miniPlayerViewControllerPlayNextTrackHandler
+        miniPlayerViewController.output.showMainPlayerHandler = miniPlayerViewControllerShowMainPlayerHandler
+        return miniPlayerViewController
+    }
+    
+    private func miniPlayerViewControllerPlayerStatusToggleHandler() {
+        mainPlayerViewController.input.togglePlayerStatus()
+    }
+    
+    private func miniPlayerViewControllerPlayNextTrackHandler() {
+        searchViewController.input.playNextTrack()
+    }
+    
+    private func miniPlayerViewControllerShowMainPlayerHandler() {
+        rootViewController.present(mainPlayerViewController, animated: true)
+    }
+    
 }

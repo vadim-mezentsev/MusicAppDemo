@@ -9,12 +9,20 @@
 import Foundation
 
 protocol MiniPlayerInput: class {
+    func setTrack(from model: TrackContentModel)
+    func togglePlayerStatus()
 }
 
 protocol MiniPlayerOutput: class {
+    var playNextTrackHandler: (() -> Void)? { get set }
+    var playerStatusToggleHandler: (() -> Void)? { get set }
+    var showMainPlayerHandler: (() -> Void)? { get set }
 }
 
 protocol MiniPlayerInteractorLogic: class {
+    func playerStatusToggle()
+    func playNextTrack()
+    func showMainPlayer()
 }
 
 class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlayerOutput {
@@ -22,34 +30,40 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     // MARK: - Properties
     
     var presenter: MiniPlayerPresenterLogic!
-    var operationQueue: DispatchQueue!
-    var player: PlayerService!
     
     // MARK: - Init
     
     init(presenter: MiniPlayerPresenterLogic) {
         self.presenter = presenter
-        self.operationQueue = DispatchQueue(label: "MiniPlayerOperationQueue", qos: .userInitiated)
-        self.player = AVPlayerService(completionQueue: operationQueue)
-        player.delegate = self
     }
     
     // MARK: - MiniPlayerInteractorLogic
     
+    func playerStatusToggle() {
+        playerStatusToggleHandler?()
+    }
+    
+    func playNextTrack() {
+        playNextTrackHandler?()
+    }
+    
+    func showMainPlayer() {
+        showMainPlayerHandler?()
+    }
+    
     // MARK: - MainPlayerInput
+    
+    func setTrack(from model: TrackContentModel) {
+        presenter.presentTrack(from: model)
+    }
+    
+    func togglePlayerStatus() {
+        presenter.togglePlayerStatus()
+    }
 
     // MARK: - MainPlayerOutput
 
-}
-
-// MARK: - PlayerServiceDelegate
-
-extension MiniPlayerInteractor: PlayerServiceDelegate {
-
-    func playDidStart() {
-    }
-    
-    func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64) {
-    }
-    
+    var playNextTrackHandler: (() -> Void)?
+    var playerStatusToggleHandler: (() -> Void)?
+    var showMainPlayerHandler: (() -> Void)?
 }

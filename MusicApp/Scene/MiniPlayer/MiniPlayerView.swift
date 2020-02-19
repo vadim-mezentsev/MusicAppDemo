@@ -9,15 +9,80 @@
 import UIKit
 
 class MiniPlayerView: UIView {
+    
     // MARK: - Appereance
     
+    private let separatorViewHeight: CGFloat = 1
+    private let trackImageViewCornerRadius: CGFloat = 4
+    
     // MARK: - Interface properties
+    
+    @IBOutlet weak var trackImageView: WebImageView!
+    @IBOutlet weak var trackTitleLabel: UILabel!
+    @IBOutlet weak var playPouseButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    let blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        return blurView
+    }()
+    
+    let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray4
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+
+    // MARK: - Setup view
+    
+    private func setupView() {
+        backgroundColor = .clear
+        setupBlurView()
+        setupSeparatorView()
+    }
+    
+    private func setupBlurView() {
+        insertSubview(blurView, at: 0)
+        
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    
+    private func setupSeparatorView() {
+        addSubview(separatorView)
+        
+        NSLayoutConstraint.activate([
+            separatorView.heightAnchor.constraint(equalToConstant: separatorViewHeight),
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
     
     // MARK: - Life cicle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        trackImageView.layer.cornerRadius = trackImageViewCornerRadius
     }
     
     // MARK: - Animation

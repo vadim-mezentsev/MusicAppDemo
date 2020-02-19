@@ -9,7 +9,8 @@
 import UIKit
 
 protocol MiniPlayerDisplayLogic: class {
-
+    func displayTrack(_ title: String, _ imageUrl: URL?)
+    func togglePlayerStatus()
 }
 
 class MiniPlayerViewController: UIViewController {
@@ -17,7 +18,9 @@ class MiniPlayerViewController: UIViewController {
     // MARK: - Types
     
     enum State {
-        case some
+        case wait
+        case play
+        case pause
     }
     
     // MARK: - Properties
@@ -63,15 +66,52 @@ class MiniPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
     }
 
     // MARK: - IBAction
     
+    @IBAction func playPouseButtonTapped(_ sender: Any) {
+        if state == .play {
+            state = .pause
+        } else {
+            state = .play
+        }
+        interactor.playerStatusToggle()
+    }
+    
+    @IBAction func nextTrackButtonTapped(_ sender: Any) {
+        interactor.playNextTrack()
+    }
+    
+    @IBAction func viewTapped(_ sender: Any) {
+        interactor.showMainPlayer()
+    }
+    
     // MARK: - Interface preparation
+    
+    private func setupView() {
+        state = .wait
+    }
     
     private func changeState(to state: MiniPlayerViewController.State) {
         switch state {
-        case .some: break
+        case .wait:
+            miniPlayerView.trackTitleLabel.text = "Not Playing".localized()
+            miniPlayerView.playPouseButton.isEnabled = false
+            miniPlayerView.nextButton.isEnabled = false
+        case .play:
+            let image = UIImage(systemName: "pause.fill")
+            miniPlayerView.playPouseButton.setImage(image, for: .normal)
+            miniPlayerView.playPouseButton.isEnabled = true
+            miniPlayerView.nextButton.isEnabled = true
+            miniPlayerView.trackImageView.contentMode = .scaleToFill
+        case .pause:
+            let image = UIImage(systemName: "play.fill")
+            miniPlayerView.playPouseButton.setImage(image, for: .normal)
+            miniPlayerView.playPouseButton.isEnabled = true
+            miniPlayerView.nextButton.isEnabled = true
+            miniPlayerView.trackImageView.contentMode = .scaleToFill
         }
     }
 }
@@ -79,5 +119,21 @@ class MiniPlayerViewController: UIViewController {
 // MARK: - MainPlayerDisplayLogic
 
 extension MiniPlayerViewController: MiniPlayerDisplayLogic {
-
+    
+    func displayTrack(_ title: String, _ imageUrl: URL?) {
+        state = .play
+        miniPlayerView.trackTitleLabel.text = title
+        if let imageUrl = imageUrl {
+            miniPlayerView.trackImageView.setImage(from: imageUrl)
+        }
+    }
+    
+    func togglePlayerStatus() {
+        if state == .play {
+            state = .pause
+        } else {
+            state = .play
+        }
+    }
+    
 }

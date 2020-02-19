@@ -10,11 +10,13 @@ import Foundation
 
 protocol MainPlayerInput: class {
     func setTrack(from model: TrackContentModel)
+    func togglePlayerStatus()
 }
 
 protocol MainPlayerOutput: class {
     var playNextTrackHandler: (() -> Void)? { get set }
     var playPreviousTrackHandler: (() -> Void)? { get set }
+    var playerStatusToggleHandler: (() -> Void)? { get set }
 }
 
 protocol MainPlayerInteractorLogic: class {
@@ -60,6 +62,7 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
             player.play()
             presenter.presentPlayState()
         }
+        playerStatusToggleHandler?()
     }
     
     func playNextTrack() {
@@ -79,10 +82,21 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
         player.play()
     }
     
+    func togglePlayerStatus() {
+        if player.isPlaying {
+            player.pause()
+            presenter.presentPauseState()
+        } else {
+            player.play()
+            presenter.presentPlayState()
+        }
+    }
+    
     // MARK: - MainPlayerOutput
     
     var playNextTrackHandler: (() -> Void)?
     var playPreviousTrackHandler: (() -> Void)?
+    var playerStatusToggleHandler: (() -> Void)?
 }
 
 // MARK: - PlayerServiceDelegate
