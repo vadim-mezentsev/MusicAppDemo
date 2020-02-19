@@ -9,9 +9,10 @@
 import UIKit
 
 protocol MainPlayerDisplayLogic: class {
-    func displayPlayStartedState()
+    func displayPlayState()
     func displayPauseState()
     func displayCurrentPlayTime(_ currentTimeText: String, _ timeLeftDurationText: String, _ currentTimePercantage: Float)
+    func displayTrack(_ title: String, _ author: String, _ imageUrl: URL?)
 }
 
 class MainPlayerViewController: UIViewController {
@@ -26,13 +27,14 @@ class MainPlayerViewController: UIViewController {
     
     // MARK: - Properties
     
-    var interactor: MainPlayerInteractor!
+    var input: MainPlayerInput!
+    var output: MainPlayerOutput!
+    var interactor: MainPlayerInteractorLogic!
     var state: MainPlayerViewController.State! {
         didSet {
             changeState(to: state)
         }
     }
-    var trackModel: TrackCellModel!
     
     // MARK: - Load view
     
@@ -58,13 +60,14 @@ class MainPlayerViewController: UIViewController {
         let presenter = MainPlayerPresenter(viewController: self)
         let interactor = MainPlayerInteractor(presenter: presenter)
         self.interactor = interactor
+        self.input = interactor
+        self.output = interactor
     }
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        set(from: trackModel)
     }
 
     // MARK: - IBAction
@@ -81,10 +84,12 @@ class MainPlayerViewController: UIViewController {
         interactor.setVolume(to: mainPlayerView.volumeSlider.value)
     }
     
-    @IBAction func previousTrackButtonTapped(_ sender: Any) {
+    @IBAction func nextTrackButtonTapped(_ sender: Any) {
+        interactor.playNextTrack()
     }
     
-    @IBAction func nextTrackButtonTapped(_ sender: Any) {
+    @IBAction func previousTrackButtonTapped(_ sender: Any) {
+        interactor.playPreviousTrack()
     }
     
     @IBAction func playPouseButtonTapped(_ sender: Any) {
@@ -93,21 +98,10 @@ class MainPlayerViewController: UIViewController {
     
     // MARK: - Interface preparation
     
-    private func set(from model: TrackCellModel) {
-        mainPlayerView.trackTitleLabel.text = model.trackTitle
-        mainPlayerView.authorLabel.text = model.artist
-        if let previewUrl = model.previewUrl {
-            interactor.playTrack(urlString: previewUrl)
-            state = .wait
-        }
-        guard let string600 = model.imageUrl?.absoluteString.replacingOccurrences(of: "100x100", with: "600x600"),
-            let url = URL(string: string600) else { return }
-        mainPlayerView.trackImageView.setImage(from: url)
-    }
-    
     private func changeState(to state: MainPlayerViewController.State) {
         switch state {
         case .wait:
+            mainPlayerView.scaleDownTrackImageView()
             let image = UIImage(systemName: "pause.fill")
             mainPlayerView.playPouseButton.setImage(image, for: .normal)
         case .play:
@@ -126,7 +120,7 @@ class MainPlayerViewController: UIViewController {
 
 extension MainPlayerViewController: MainPlayerDisplayLogic {
     
-    func displayPlayStartedState() {
+    func displayPlayState() {
         state = .play
     }
     
@@ -140,4 +134,13 @@ extension MainPlayerViewController: MainPlayerDisplayLogic {
         mainPlayerView.currentTimeSlider.value = currentTimePercantage
     }
 
+    func displayTrack(_ title: String, _ author: String, _ imageUrl: URL?) {
+        state = .wait
+        mainPlayerView.trackTitleLabel.text = title
+        mainPlayerView.authorLabel.text = author
+        if let imageUrl = imageUrl {
+            mainPlayerView.trackImageView.setImage(from: imageUrl)
+        }
+    }
+    
 }

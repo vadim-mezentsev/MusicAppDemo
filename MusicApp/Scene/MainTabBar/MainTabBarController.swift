@@ -13,7 +13,6 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = TabBarType.allCases.map { $0.buildViewController() }
         tabBar.tintColor = .systemPink
     }
 

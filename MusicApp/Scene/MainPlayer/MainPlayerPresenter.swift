@@ -12,6 +12,7 @@ protocol MainPlayerPresenterLogic: class {
     func presentPlayState()
     func presentPauseState()
     func presentCurrentPlayTime(_ currentTime: Float64, _ duration: Float64)
+    func presentTrack(from model: TrackContentModel)
 }
 
 class MainPlayerPresenter: MainPlayerPresenterLogic {
@@ -30,7 +31,7 @@ class MainPlayerPresenter: MainPlayerPresenterLogic {
     
     func presentPlayState() {
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.displayPlayStartedState()
+            self?.viewController?.displayPlayState()
         }
     }
     
@@ -49,6 +50,15 @@ class MainPlayerPresenter: MainPlayerPresenterLogic {
         }
     }
     
+    func presentTrack(from model: TrackContentModel) {
+        let title = model.trackName
+        let author = model.artistName
+        let imageUrl = makeImageUrl(from: model.artworkUrl100)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayTrack(title, author, imageUrl)
+        }
+    }
+    
     // MARK: - Helper methods
     
     private func floatToString(_ value: Float64) -> String {
@@ -58,6 +68,11 @@ class MainPlayerPresenter: MainPlayerPresenterLogic {
         let minutes = totalSecond / 60
         let timeFormatString = String(format: "%02d:%02d", minutes, seconds)
         return timeFormatString
+    }
+    
+    private func makeImageUrl(from artworkUrl100: String?) -> URL? {
+        guard let artworkUrl600 = artworkUrl100?.replacingOccurrences(of: "100x100", with: "600x600") else { return nil }
+        return URL(string: artworkUrl600)
     }
     
 }

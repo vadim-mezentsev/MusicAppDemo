@@ -11,6 +11,7 @@ import UIKit
 protocol SearchViewDisplayLogic: class {
     func displayTracks(_ trackCellModels: [TrackCellModel])
     func displayError(_ message: String)
+    func selectCell(at row: Int)
 }
 
 class SearchViewController: UIViewController {
@@ -33,7 +34,9 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Properties
-    
+
+    var input: SearchInput!
+    var output: SearchOutput!
     var interactor: SearchInteractorLogic!
     var state: SearchViewController.State! {
         didSet {
@@ -67,6 +70,8 @@ class SearchViewController: UIViewController {
         let presenter = SearchPresenter(viewController: self)
         let interactor = SearchInteractor(presenter: presenter)
         self.interactor = interactor
+        self.input = interactor
+        self.output = interactor
     }
 
     // MARK: - View lifecycle
@@ -121,6 +126,13 @@ extension SearchViewController: SearchViewDisplayLogic {
         searchView.hintLabel.text = message
         state = .error
     }
+        
+    func selectCell(at row: Int) {
+        let indexPath = IndexPath(row: row, section: 0)
+        searchView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+        interactor.playTrack(index: indexPath.row)
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -145,12 +157,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cellModel = cellViewModels[indexPath.row]
-        let mainPlayerViewController = MainPlayerViewController()
-        mainPlayerViewController.trackModel = cellModel
-        present(mainPlayerViewController, animated: true, completion: nil)
+        interactor.playTrack(index: indexPath.row)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

@@ -28,13 +28,7 @@ enum TabBarType: CaseIterable {
         }
     }
     
-    func buildViewController() -> UIViewController {
-        let viewController: UIViewController!
-        switch self {
-        case .search: viewController = SearchViewController()
-        case .library: viewController = LibraryViewController()
-        }
-        
+    func buildNavigationController(for viewController: UIViewController) -> UINavigationController {        
         let navigationViewController = UINavigationController(rootViewController: viewController)
         
         navigationViewController.tabBarItem.image = self.image

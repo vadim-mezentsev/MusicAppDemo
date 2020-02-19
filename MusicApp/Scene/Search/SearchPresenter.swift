@@ -11,6 +11,8 @@ import Foundation
 protocol SearchPresenterLogic: class {
     func presentTracks(_ tracks: [TrackContentModel])
     func presentError(_ message: String)
+    func selectNextTrack(currentIndex: Int, maxIndex: Int)
+    func selectPreviousTrack(currentIndex: Int, maxIndex: Int)
 }
 
 class SearchPresenter: SearchPresenterLogic {
@@ -34,8 +36,7 @@ class SearchPresenter: SearchPresenterLogic {
             return TrackCellModel(imageUrl: imageUrl,
                                   trackTitle: trackContentModel.trackName,
                                   artist: trackContentModel.artistName,
-                                  collection: trackContentModel.collectionName ?? "Unknown".localized(),
-                                  previewUrl: trackContentModel.previewUrl)
+                                  collection: trackContentModel.collectionName ?? "Unknown".localized())
         }
         
         DispatchQueue.main.async { [weak self] in
@@ -48,4 +49,19 @@ class SearchPresenter: SearchPresenterLogic {
             self?.viewController?.displayError(message)
         }
     }
+    
+    func selectNextTrack(currentIndex: Int, maxIndex: Int) {
+        let nextCellRow = currentIndex + 1 <= maxIndex ? currentIndex + 1 : 0
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.selectCell(at: nextCellRow)
+        }
+    }
+    
+    func selectPreviousTrack(currentIndex: Int, maxIndex: Int) {
+        let previousCellRow = currentIndex - 1 >= 0 ? currentIndex - 1 : maxIndex
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.selectCell(at: previousCellRow)
+        }
+    }
+    
 }

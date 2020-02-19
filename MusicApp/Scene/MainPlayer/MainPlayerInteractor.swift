@@ -8,14 +8,24 @@
 
 import Foundation
 
+protocol MainPlayerInput: class {
+    func setTrack(from model: TrackContentModel)
+}
+
+protocol MainPlayerOutput: class {
+    var playNextTrackHandler: (() -> Void)? { get set }
+    var playPreviousTrackHandler: (() -> Void)? { get set }
+}
+
 protocol MainPlayerInteractorLogic: class {
     func seek(to value: Float)
     func setVolume(to value: Float)
     func playerStatusToggle()
-    func playTrack(urlString: String)
+    func playNextTrack()
+    func playPreviousTrack()
 }
 
-class MainPlayerInteractor: MainPlayerInteractorLogic {
+class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlayerOutput {
     
     // MARK: - Properties
     
@@ -52,11 +62,27 @@ class MainPlayerInteractor: MainPlayerInteractorLogic {
         }
     }
     
-    func playTrack(urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        player.setTrack(from: url)
+    func playNextTrack() {
+        playNextTrackHandler?()
+    }
+    
+    func playPreviousTrack() {
+        playPreviousTrackHandler?()
+    }
+    
+    // MARK: - MainPlayerInput
+    
+    func setTrack(from model: TrackContentModel) {
+        guard let trackUrlString = model.previewUrl, let trackUrl = URL(string: trackUrlString) else { return }
+        presenter.presentTrack(from: model)
+        player.setTrack(from: trackUrl)
         player.play()
     }
+    
+    // MARK: - MainPlayerOutput
+    
+    var playNextTrackHandler: (() -> Void)?
+    var playPreviousTrackHandler: (() -> Void)?
 }
 
 // MARK: - PlayerServiceDelegate
