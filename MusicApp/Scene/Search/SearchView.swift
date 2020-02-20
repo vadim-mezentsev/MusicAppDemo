@@ -54,6 +54,12 @@ class SearchView: UIView {
         setupView()
     }
     
+    // MARK: - Life cicle
+    
+    override func safeAreaInsetsDidChange() {
+        layoutIfNeeded()
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
@@ -76,7 +82,7 @@ class SearchView: UIView {
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
- 
+    
     private func setupActivityIndicator() {
         addSubview(activityIndicator)
         
