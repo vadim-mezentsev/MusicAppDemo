@@ -19,15 +19,25 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-At-8PR">
                     <rect key="frame" x="15" y="8" width="324" height="57"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qna-3z-CwQ" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="1.5" width="57" height="55"/>
-                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYh-h7-sMV">
+                            <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qna-3z-CwQ" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="1.5" width="57" height="55"/>
+                                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="31"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="qna-3z-CwQ" secondAttribute="height" multiplier="1:1" id="wTK-Bh-uhS"/>
+                                <constraint firstAttribute="width" secondItem="uYh-h7-sMV" secondAttribute="height" multiplier="1:1" id="6bD-yD-vS1"/>
+                                <constraint firstItem="qna-3z-CwQ" firstAttribute="top" secondItem="uYh-h7-sMV" secondAttribute="top" id="AWI-Ab-Ugl"/>
+                                <constraint firstItem="qna-3z-CwQ" firstAttribute="leading" secondItem="uYh-h7-sMV" secondAttribute="leading" id="BLk-E3-C7b"/>
+                                <constraint firstAttribute="trailing" secondItem="qna-3z-CwQ" secondAttribute="trailing" id="nvm-b3-oUC"/>
+                                <constraint firstAttribute="bottom" secondItem="qna-3z-CwQ" secondAttribute="bottom" id="rfG-MO-Kye"/>
                             </constraints>
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="31"/>
-                        </imageView>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4O-5T-0kQ">
                             <rect key="frame" x="67" y="0.0" width="123" height="57"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -62,7 +72,6 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="qna-3z-CwQ" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="PgM-2d-cTg"/>
                         <constraint firstItem="YOh-BL-9wK" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="b0v-6f-GPw"/>
                         <constraint firstItem="T3c-er-WSn" firstAttribute="height" secondItem="s4O-At-8PR" secondAttribute="height" id="p4j-d9-2bY"/>
                     </constraints>

@@ -134,7 +134,7 @@ extension MiniPlayerViewController: MiniPlayerDisplayLogic {
         state = .play
         miniPlayerView.trackTitleLabel.text = title
         if let imageUrl = imageUrl {
-            miniPlayerView.trackImageView.setImage(from: imageUrl)
+            miniPlayerView.flipTrackImageView(from: imageUrl)
         }
     }
     

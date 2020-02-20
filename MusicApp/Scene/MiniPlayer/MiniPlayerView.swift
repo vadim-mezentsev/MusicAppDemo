@@ -87,4 +87,23 @@ class MiniPlayerView: UIView {
     
     // MARK: - Animation
 
+    func flipTrackImageView(from url: URL) {
+        let fakeImageView = UIImageView()
+        fakeImageView.frame = trackImageView.frame
+        fakeImageView.image = trackImageView.image
+        fakeImageView.layer.cornerRadius = trackImageViewCornerRadius
+        trackImageView.superview!.addSubview(fakeImageView)
+        trackImageView.setImage(from: url)
+        layoutIfNeeded()
+        
+        UIView.transition(
+            from: fakeImageView,
+            to: trackImageView,
+            duration: 1,
+            options: [.curveEaseInOut, .transitionFlipFromRight],
+            completion: { _ in
+                fakeImageView.removeFromSuperview()
+            }
+        )
+    }
 }
