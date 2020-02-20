@@ -22,6 +22,7 @@ protocol PlayerService: class {
 protocol PlayerServiceDelegate: class {
     func playDidStart()
     func playDidPause()
+    func playDidEnd()
     func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64)
 }
 
@@ -98,9 +99,13 @@ class AVPlayerService: PlayerService {
         player.addPeriodicTimeObserver(forInterval: interval, queue: completionQueue) { [weak self] _ in
             guard let self = self else { return }
             guard let currentItem = self.player.currentItem else { return }
-            let durationTime = CMTimeGetSeconds(currentItem.duration)
-            let currentTime = CMTimeGetSeconds(currentItem.currentTime())
-            self.delegate?.currentPlayTimeDidChange(currentTime: currentTime, totalDuration: durationTime)
+            if currentItem.duration == currentItem.currentTime() {
+                self.delegate?.playDidEnd()
+            } else {
+                let durationTime = CMTimeGetSeconds(currentItem.duration)
+                let currentTime = CMTimeGetSeconds(currentItem.currentTime())
+                self.delegate?.currentPlayTimeDidChange(currentTime: currentTime, totalDuration: durationTime)
+            }
         }
     }
     

@@ -159,4 +159,8 @@ extension MainCoordinator: PlayerServiceDelegate {
         mainPlayerViewController.input.setCurrentPlayTime(currentTime: currentTime, totalDuration: totalDuration)
     }
     
+    func playDidEnd() {
+        searchViewController.input.playNextTrack()
+    }
+    
 }
