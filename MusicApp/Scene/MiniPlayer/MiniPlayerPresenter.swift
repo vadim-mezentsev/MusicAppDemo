@@ -10,7 +10,8 @@ import Foundation
 
 protocol MiniPlayerPresenterLogic: class {
     func presentTrack(from model: TrackContentModel)
-    func togglePlayerStatus()
+    func presentPlayState()
+    func presentPauseState()
 }
 
 class MiniPlayerPresenter: MiniPlayerPresenterLogic {
@@ -34,9 +35,17 @@ class MiniPlayerPresenter: MiniPlayerPresenterLogic {
             self?.viewController?.displayTrack(title, imageUrl)
         }
     }
+
+    func presentPlayState() {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayPlayState()
+        }
+    }
     
-    func togglePlayerStatus() {
-        viewController?.togglePlayerStatus()
+    func presentPauseState() {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayPauseState()
+        }
     }
     
     // MARK: - Helper methods

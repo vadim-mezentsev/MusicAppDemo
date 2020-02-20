@@ -23,6 +23,8 @@ class MainCoordinator: Coordinator {
     var mainPlayerViewController: MainPlayerViewController!
     var miniPlayerViewController: MiniPlayerViewController!
     
+    var player: PlayerService!
+    
     // MARK: - Init
     
     init(window: UIWindow) {
@@ -39,6 +41,9 @@ class MainCoordinator: Coordinator {
             TabBarType.search.buildNavigationController(for: searchViewController),
             TabBarType.library.buildNavigationController(for: libraryViewController)
         ]
+        
+        self.player = AVPlayerService()
+        player.delegate = self
     }
     
     // MARK: - Coordinator
@@ -57,8 +62,11 @@ class MainCoordinator: Coordinator {
     }
     
     private func searchViewControllerPlayTrackHandler(trackModel: TrackContentModel) {
+        guard let trackUrlString = trackModel.previewUrl, let trackUrl = URL(string: trackUrlString) else { return }
         mainPlayerViewController.input.setTrack(from: trackModel)
         miniPlayerViewController.input.setTrack(from: trackModel)
+        player.setTrack(from: trackUrl)
+        player.play()
     }
 
     // MARK: - LibraryViewController setup
@@ -75,6 +83,8 @@ class MainCoordinator: Coordinator {
         mainPlayerViewController.output.playNextTrackHandler = mainPlayerViewControllerPlayNextTrackHandler
         mainPlayerViewController.output.playPreviousTrackHandler = mainPlayerViewControllerPlayPreviousTrackHandler
         mainPlayerViewController.output.playerStatusToggleHandler = mainPlayerViewControllerPlayerStatusToggleHandler
+        mainPlayerViewController.output.playerSeekHandler = mainPlayerViewControllerPlayerSeekHandler
+        mainPlayerViewController.output.playerSetVolumeHandler = mainPlayerViewControllerPlayerSetVolumeHandler
         return mainPlayerViewController
     }
     
@@ -87,7 +97,15 @@ class MainCoordinator: Coordinator {
     }
 
     private func mainPlayerViewControllerPlayerStatusToggleHandler() {
-        miniPlayerViewController.input.togglePlayerStatus()
+        togglePlayerStatus()
+    }
+    
+    func mainPlayerViewControllerPlayerSeekHandler(to value: Float) {
+        player.seek(to: value)
+    }
+    
+    func mainPlayerViewControllerPlayerSetVolumeHandler(to value: Float) {
+        player.setVolume(to: value)
     }
     
     // MARK: - MiniPlayerViewController setup
@@ -101,7 +119,7 @@ class MainCoordinator: Coordinator {
     }
     
     private func miniPlayerViewControllerPlayerStatusToggleHandler() {
-        mainPlayerViewController.input.togglePlayerStatus()
+        togglePlayerStatus()
     }
     
     private func miniPlayerViewControllerPlayNextTrackHandler() {
@@ -110,6 +128,36 @@ class MainCoordinator: Coordinator {
     
     private func miniPlayerViewControllerShowMainPlayerHandler() {
         rootViewController.present(mainPlayerViewController, animated: true)
+    }
+    
+    // MARK: - Helper methods
+    
+    private func togglePlayerStatus() {
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
+    }
+    
+}
+
+// MARK: - PlayerServiceDelegate
+
+extension MainCoordinator: PlayerServiceDelegate {
+
+    func playDidStart() {
+        mainPlayerViewController.input.setPlayStatus()
+        miniPlayerViewController.input.setPlayStatus()
+    }
+    
+    func playDidPause() {
+        mainPlayerViewController.input.setPauseStatus()
+        miniPlayerViewController.input.setPauseStatus()
+    }
+    
+    func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64) {
+        mainPlayerViewController.input.setCurrentPlayTime(currentTime: currentTime, totalDuration: totalDuration)
     }
     
 }

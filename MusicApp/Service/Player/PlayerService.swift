@@ -21,6 +21,7 @@ protocol PlayerService: class {
 
 protocol PlayerServiceDelegate: class {
     func playDidStart()
+    func playDidPause()
     func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64)
 }
 
@@ -42,8 +43,8 @@ class AVPlayerService: PlayerService {
 
     // MARK: - Init
     
-    init(completionQueue: DispatchQueue) {
-        self.completionQueue = completionQueue
+    init(completionQueue: DispatchQueue? = nil) {
+        self.completionQueue = completionQueue ?? DispatchQueue(label: "AVPlayerServiceQuiue", qos: .userInitiated)
         addStartPlaybackObserver()
         addCurrentPlayTimeObserver()
     }
@@ -57,10 +58,12 @@ class AVPlayerService: PlayerService {
     
     func play() {
         player.play()
+        delegate?.playDidStart()
     }
     
     func pause() {
         player.pause()
+        delegate?.playDidPause()
     }
     
     func seek(to percentage: Float) {

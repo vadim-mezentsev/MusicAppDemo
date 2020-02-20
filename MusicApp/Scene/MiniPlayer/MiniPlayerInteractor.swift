@@ -10,7 +10,8 @@ import Foundation
 
 protocol MiniPlayerInput: class {
     func setTrack(from model: TrackContentModel)
-    func togglePlayerStatus()
+    func setPlayStatus()
+    func setPauseStatus()
 }
 
 protocol MiniPlayerOutput: class {
@@ -57,8 +58,12 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
         presenter.presentTrack(from: model)
     }
     
-    func togglePlayerStatus() {
-        presenter.togglePlayerStatus()
+    func setPlayStatus() {
+        presenter.presentPlayState()
+    }
+    
+    func setPauseStatus() {
+        presenter.presentPauseState()
     }
 
     // MARK: - MainPlayerOutput

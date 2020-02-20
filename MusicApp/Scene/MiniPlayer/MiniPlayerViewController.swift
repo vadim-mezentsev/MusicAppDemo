@@ -9,6 +9,8 @@
 import UIKit
 
 protocol MiniPlayerDisplayLogic: class {
+    func displayPlayState()
+    func displayPauseState()
     func displayTrack(_ title: String, _ imageUrl: URL?)
     func togglePlayerStatus()
 }
@@ -119,6 +121,14 @@ class MiniPlayerViewController: UIViewController {
 // MARK: - MainPlayerDisplayLogic
 
 extension MiniPlayerViewController: MiniPlayerDisplayLogic {
+    
+    func displayPlayState() {
+        state = .play
+    }
+    
+    func displayPauseState() {
+        state = .pause
+    }
     
     func displayTrack(_ title: String, _ imageUrl: URL?) {
         state = .play

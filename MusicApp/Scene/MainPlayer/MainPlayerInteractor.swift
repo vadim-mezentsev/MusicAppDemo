@@ -10,13 +10,17 @@ import Foundation
 
 protocol MainPlayerInput: class {
     func setTrack(from model: TrackContentModel)
-    func togglePlayerStatus()
+    func setPlayStatus()
+    func setPauseStatus()
+    func setCurrentPlayTime(currentTime: Float64, totalDuration: Float64)
 }
 
 protocol MainPlayerOutput: class {
     var playNextTrackHandler: (() -> Void)? { get set }
     var playPreviousTrackHandler: (() -> Void)? { get set }
     var playerStatusToggleHandler: (() -> Void)? { get set }
+    var playerSeekHandler: ((Float) -> Void)? { get set }
+    var playerSetVolumeHandler: ((Float) -> Void)? { get set }
 }
 
 protocol MainPlayerInteractorLogic: class {
@@ -32,36 +36,24 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     // MARK: - Properties
     
     var presenter: MainPlayerPresenterLogic!
-    var operationQueue: DispatchQueue!
-    var player: PlayerService!
     
     // MARK: - Init
     
     init(presenter: MainPlayerPresenterLogic) {
         self.presenter = presenter
-        self.operationQueue = DispatchQueue(label: "MainPlayerOperationQueue", qos: .userInitiated)
-        self.player = AVPlayerService(completionQueue: operationQueue)
-        player.delegate = self
     }
     
     // MARK: - MainPlayerInteractorLogic
     
     func seek(to value: Float) {
-        player.seek(to: value)
+        playerSeekHandler?(value)
     }
     
     func setVolume(to value: Float) {
-        player.setVolume(to: value)
+        playerSetVolumeHandler?(value)
     }
     
     func playerStatusToggle() {
-        if player.isPlaying {
-            player.pause()
-            presenter.presentPauseState()
-        } else {
-            player.play()
-            presenter.presentPlayState()
-        }
         playerStatusToggleHandler?()
     }
     
@@ -76,20 +68,19 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     // MARK: - MainPlayerInput
     
     func setTrack(from model: TrackContentModel) {
-        guard let trackUrlString = model.previewUrl, let trackUrl = URL(string: trackUrlString) else { return }
         presenter.presentTrack(from: model)
-        player.setTrack(from: trackUrl)
-        player.play()
     }
     
-    func togglePlayerStatus() {
-        if player.isPlaying {
-            player.pause()
-            presenter.presentPauseState()
-        } else {
-            player.play()
-            presenter.presentPlayState()
-        }
+    func setPlayStatus() {
+        presenter.presentPlayState()
+    }
+    
+    func setPauseStatus() {
+        presenter.presentPauseState()
+    }
+    
+    func setCurrentPlayTime(currentTime: Float64, totalDuration: Float64) {
+        presenter.presentCurrentPlayTime(currentTime, totalDuration)
     }
     
     // MARK: - MainPlayerOutput
@@ -97,18 +88,6 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     var playNextTrackHandler: (() -> Void)?
     var playPreviousTrackHandler: (() -> Void)?
     var playerStatusToggleHandler: (() -> Void)?
-}
-
-// MARK: - PlayerServiceDelegate
-
-extension MainPlayerInteractor: PlayerServiceDelegate {
-
-    func playDidStart() {
-        presenter.presentPlayState()
-    }
-    
-    func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64) {
-        presenter.presentCurrentPlayTime(currentTime, totalDuration)
-    }
-    
+    var playerSeekHandler: ((Float) -> Void)?
+    var playerSetVolumeHandler: ((Float) -> Void)?
 }
