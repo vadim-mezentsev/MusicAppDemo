@@ -20,6 +20,7 @@ protocol SearchOutput: class {
 protocol SearchInteractorLogic: class {
     func fetchTracks(for term: String)
     func playTrack(index: Int)
+    func clearSearchResults()
 }
 
 class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
@@ -63,6 +64,11 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
         guard let trackModel = tracks?[index] else { return }
         currentTrackIndex = index
         playTrackHandler?(trackModel)
+    }
+    
+    func clearSearchResults() {
+        tracks = nil
+        currentTrackIndex = nil
     }
     
     // MARK: - SearchInput

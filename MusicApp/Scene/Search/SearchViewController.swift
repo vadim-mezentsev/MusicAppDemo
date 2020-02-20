@@ -188,6 +188,7 @@ extension SearchViewController: UISearchBarDelegate {
         state = .wait
         searchView.tableView.stopDecelerating()
         cellViewModels = []
+        interactor.clearSearchResults()
     }
     
 }

@@ -9,6 +9,11 @@
 import UIKit
 
 class SearchView: UIView {
+
+    // MARK: - Appereance
+    
+    var tableViewRowHeight: CGFloat = 84
+    var tableViewBottomInset: CGFloat = 252
     
     // MARK: - Interface properties
 
@@ -23,7 +28,8 @@ class SearchView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TrackCell.nib, forCellReuseIdentifier: TrackCell.reuseId)
-        tableView.rowHeight = 84
+        tableView.rowHeight = tableViewRowHeight
+        tableView.contentInset.bottom = tableViewBottomInset
         return tableView
     }()
     

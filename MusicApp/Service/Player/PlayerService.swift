@@ -52,8 +52,10 @@ class AVPlayerService: PlayerService {
     // MARK: - PlayerService
     
     func setTrack(from url: URL) {
+        player.pause()
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
+        player.play()
     }
     
     func play() {

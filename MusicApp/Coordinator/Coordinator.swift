@@ -66,7 +66,6 @@ class MainCoordinator: Coordinator {
         mainPlayerViewController.input.setTrack(from: trackModel)
         miniPlayerViewController.input.setTrack(from: trackModel)
         player.setTrack(from: trackUrl)
-        player.play()
     }
 
     // MARK: - LibraryViewController setup
