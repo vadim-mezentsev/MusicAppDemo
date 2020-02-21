@@ -22,8 +22,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYh-h7-sMV">
                             <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qna-3z-CwQ" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="1.5" width="57" height="55"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Note" translatesAutoresizingMaskIntoConstraints="NO" id="qna-3z-CwQ" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
                                     <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="31"/>
@@ -102,8 +102,8 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="Note" width="1000" height="1000"/>
         <image name="forward.fill" catalog="system" width="64" height="38"/>
-        <image name="music.note" catalog="system" width="48" height="64"/>
         <image name="pause.fill" catalog="system" width="58" height="64"/>
     </resources>
 </document>

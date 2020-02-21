@@ -107,13 +107,11 @@ class MiniPlayerViewController: UIViewController {
             miniPlayerView.playPouseButton.setImage(image, for: .normal)
             miniPlayerView.playPouseButton.isEnabled = true
             miniPlayerView.nextButton.isEnabled = true
-            miniPlayerView.trackImageView.contentMode = .scaleToFill
         case .pause:
             let image = UIImage(systemName: "play.fill")
             miniPlayerView.playPouseButton.setImage(image, for: .normal)
             miniPlayerView.playPouseButton.isEnabled = true
             miniPlayerView.nextButton.isEnabled = true
-            miniPlayerView.trackImageView.contentMode = .scaleToFill
         }
     }
 }

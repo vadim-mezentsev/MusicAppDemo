@@ -83,6 +83,7 @@ class MiniPlayerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         trackImageView.layer.cornerRadius = trackImageViewCornerRadius
+        trackImageView.backgroundColor = .systemGray2
     }
     
     // MARK: - Animation

@@ -22,6 +22,7 @@
 		CE3A3B8723CF725900A3AC06 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8523CF725900A3AC06 /* TrackCell.swift */; };
 		CE3A3B8823CF725900A3AC06 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A3B8623CF725900A3AC06 /* TrackCell.xib */; };
 		CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */; };
+		CE510A0E23FE950B004634B0 /* MainPlayerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */; };
 		CE515F4123F9B5E700F436AC /* MainPlayerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */; };
 		CE515F4323F9B5F900F436AC /* MainPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */; };
 		CE515F4623FAF1AB00F436AC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4523FAF1AB00F436AC /* Coordinator.swift */; };
@@ -62,6 +63,7 @@
 		CE3A3B8523CF725900A3AC06 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		CE3A3B8623CF725900A3AC06 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerTransition.swift; sourceTree = "<group>"; };
 		CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerInteractor.swift; sourceTree = "<group>"; };
 		CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerPresenter.swift; sourceTree = "<group>"; };
 		CE515F4523FAF1AB00F436AC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				CE16903523E4817400C0DBEF /* MainPlayerViewController.swift */,
 				CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */,
 				CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */,
+				CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */,
 			);
 			path = MainPlayer;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				CE515F5523FD3ADD00F436AC /* MiniPlayerPresenter.swift in Sources */,
 				CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */,
 				CE515F4F23FD397000F436AC /* MiniPlayerView.swift in Sources */,
+				CE510A0E23FE950B004634B0 /* MainPlayerTransition.swift in Sources */,
 				CE7AB73323CDEF0E00CF9EF8 /* TabBarType.swift in Sources */,
 				CE8EECC923D06B000078745B /* UITableView + extension.swift in Sources */,
 				CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */,

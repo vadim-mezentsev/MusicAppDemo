@@ -126,7 +126,10 @@ class MainCoordinator: Coordinator {
     }
     
     private func miniPlayerViewControllerShowMainPlayerHandler() {
-        rootViewController.present(mainPlayerViewController, animated: true)
+        let mainPlayerTransition = MainPlayerTransition()
+        mainPlayerTransition.tabBarView = rootViewController.tabBar
+        mainPlayerViewController.transitioningDelegate = mainPlayerTransition
+        miniPlayerViewController.present(mainPlayerViewController, animated: true)
     }
     
     // MARK: - Helper methods
