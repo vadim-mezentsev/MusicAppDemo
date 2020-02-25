@@ -44,21 +44,20 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: - Init
     
-    init() {
+    init(playerService: PlayerService) {
         super.init(nibName: nil, bundle: nil)
-        setupScene()
+        setupScene(playerService: playerService)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupScene()
+        fatalError("Storyboard not supported")
     }
     
     // MARK: Setup scene
     
-    private func setupScene() {
+    private func setupScene(playerService: PlayerService) {
         let presenter = MiniPlayerPresenter(viewController: self)
-        let interactor = MiniPlayerInteractor(presenter: presenter)
+        let interactor = MiniPlayerInteractor(presenter: presenter, playerService: playerService)
         self.interactor = interactor
         self.input = interactor
         self.output = interactor
@@ -113,6 +112,10 @@ class MiniPlayerViewController: UIViewController {
             miniPlayerView.playPouseButton.isEnabled = true
             miniPlayerView.nextButton.isEnabled = true
         }
+    }
+    
+    deinit {
+        interactor.prepareForRemove()
     }
 }
 

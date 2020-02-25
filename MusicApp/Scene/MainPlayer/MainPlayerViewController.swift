@@ -44,21 +44,20 @@ class MainPlayerViewController: UIViewController {
     
     // MARK: - Init
     
-    init() {
+    init(playerService: PlayerService) {
         super.init(nibName: nil, bundle: nil)
-        setupScene()
+        setupScene(playerService: playerService)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupScene()
+        fatalError("Storyboard not supported")
     }
     
     // MARK: Setup scene
     
-    private func setupScene() {
+    private func setupScene(playerService: PlayerService) {
         let presenter = MainPlayerPresenter(viewController: self)
-        let interactor = MainPlayerInteractor(presenter: presenter)
+        let interactor = MainPlayerInteractor(presenter: presenter, playerService: playerService)
         self.interactor = interactor
         self.input = interactor
         self.output = interactor
@@ -113,6 +112,10 @@ class MainPlayerViewController: UIViewController {
             mainPlayerView.playPouseButton.setImage(image, for: .normal)
             mainPlayerView.scaleDownTrackImageView()
         }
+    }
+    
+    deinit {
+        interactor.prepareForRemove()
     }
 }
 

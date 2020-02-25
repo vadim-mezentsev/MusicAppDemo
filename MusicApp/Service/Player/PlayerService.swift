@@ -11,30 +11,35 @@ import AVFoundation
 
 protocol PlayerService: class {
     var isPlaying: Bool { get }
-    var delegate: PlayerServiceDelegate? { get set }
     func setTrack(from url: URL)
     func play()
     func pause()
     func seek(to percentage: Float)
     func setVolume(to value: Float)
+    func addObserver(_ observer: PlayerServiceObserver)
+    func removeObserver(_ observer: PlayerServiceObserver)
 }
 
-protocol PlayerServiceDelegate: class {
-    func playDidStart()
-    func playDidPause()
-    func playDidEnd()
-    func currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64)
+enum PlayerServiceEvent {
+    case playDidStart
+    case playDidPause
+    case playDidEnd
+    case currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64)
+}
+
+protocol PlayerServiceObserver: class {
+     func eventHandler(event: PlayerServiceEvent)
 }
 
 class AVPlayerService: PlayerService {
     
     // MARK: - Properties
     
-    weak var delegate: PlayerServiceDelegate?
     var isPlaying: Bool {
         player.timeControlStatus == .playing ? true : false
     }
     
+    private var observers = [PlayerServiceObserver]()
     private let player: AVPlayer = {
         let player = AVPlayer()
         player.automaticallyWaitsToMinimizeStalling = false
@@ -61,12 +66,12 @@ class AVPlayerService: PlayerService {
     
     func play() {
         player.play()
-        delegate?.playDidStart()
+        notify(event: .playDidStart)
     }
     
     func pause() {
         player.pause()
-        delegate?.playDidPause()
+        notify(event: .playDidPause)
     }
     
     func seek(to percentage: Float) {
@@ -84,13 +89,25 @@ class AVPlayerService: PlayerService {
         player.volume = newVolumeValue
     }
     
+    func addObserver(_ observer: PlayerServiceObserver) {
+        observers.append(observer)
+    }
+
+    func removeObserver(_ observer: PlayerServiceObserver) {
+        observers = observers.filter { $0 !== observer}
+    }
+    
+    func notify(event: PlayerServiceEvent) {
+        observers.forEach { $0.eventHandler(event: event) }
+    }
+    
     // MARK: - AVPlayer observers
     
     private func addStartPlaybackObserver() {
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: completionQueue) { [weak self] in
-            self?.delegate?.playDidStart()
+            self?.notify(event: .playDidStart)
         }
     }
     
@@ -100,11 +117,11 @@ class AVPlayerService: PlayerService {
             guard let self = self else { return }
             guard let currentItem = self.player.currentItem else { return }
             if currentItem.duration == currentItem.currentTime() {
-                self.delegate?.playDidEnd()
+                self.notify(event: .playDidEnd)
             } else {
                 let durationTime = CMTimeGetSeconds(currentItem.duration)
                 let currentTime = CMTimeGetSeconds(currentItem.currentTime())
-                self.delegate?.currentPlayTimeDidChange(currentTime: currentTime, totalDuration: durationTime)
+                self.notify(event: .currentPlayTimeDidChange(currentTime: currentTime, totalDuration: durationTime))
             }
         }
     }

@@ -10,13 +10,10 @@ import Foundation
 
 protocol MiniPlayerInput: class {
     func setTrack(from model: TrackContentModel)
-    func setPlayStatus()
-    func setPauseStatus()
 }
 
 protocol MiniPlayerOutput: class {
     var playNextTrackHandler: (() -> Void)? { get set }
-    var playerStatusToggleHandler: (() -> Void)? { get set }
     var showMainPlayerHandler: (() -> Void)? { get set }
 }
 
@@ -24,6 +21,7 @@ protocol MiniPlayerInteractorLogic: class {
     func playerStatusToggle()
     func playNextTrack()
     func showMainPlayer()
+    func prepareForRemove()
 }
 
 class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlayerOutput {
@@ -31,17 +29,25 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     // MARK: - Properties
     
     var presenter: MiniPlayerPresenterLogic!
+    weak var player: PlayerService?
     
     // MARK: - Init
     
-    init(presenter: MiniPlayerPresenterLogic) {
+    init(presenter: MiniPlayerPresenterLogic, playerService: PlayerService) {
         self.presenter = presenter
+        self.player = playerService
+        self.player?.addObserver(self)
     }
     
     // MARK: - MiniPlayerInteractorLogic
     
     func playerStatusToggle() {
-        playerStatusToggleHandler?()
+        guard let player = player else { return }
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
     }
     
     func playNextTrack() {
@@ -50,6 +56,10 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     
     func showMainPlayer() {
         showMainPlayerHandler?()
+    }
+    
+    func prepareForRemove() {
+        player?.removeObserver(self)
     }
     
     // MARK: - MainPlayerInput
@@ -69,6 +79,18 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     // MARK: - MainPlayerOutput
 
     var playNextTrackHandler: (() -> Void)?
-    var playerStatusToggleHandler: (() -> Void)?
     var showMainPlayerHandler: (() -> Void)?
+}
+
+extension MiniPlayerInteractor: PlayerServiceObserver {
+    func eventHandler(event: PlayerServiceEvent) {
+        switch event {
+        case .playDidStart:
+            presenter.presentPlayState()
+        case .playDidPause:
+            presenter.presentPauseState()
+        default:
+            return
+        }
+    }
 }

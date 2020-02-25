@@ -10,17 +10,11 @@ import Foundation
 
 protocol MainPlayerInput: class {
     func setTrack(from model: TrackContentModel)
-    func setPlayStatus()
-    func setPauseStatus()
-    func setCurrentPlayTime(currentTime: Float64, totalDuration: Float64)
 }
 
 protocol MainPlayerOutput: class {
     var playNextTrackHandler: (() -> Void)? { get set }
     var playPreviousTrackHandler: (() -> Void)? { get set }
-    var playerStatusToggleHandler: (() -> Void)? { get set }
-    var playerSeekHandler: ((Float) -> Void)? { get set }
-    var playerSetVolumeHandler: ((Float) -> Void)? { get set }
 }
 
 protocol MainPlayerInteractorLogic: class {
@@ -29,6 +23,7 @@ protocol MainPlayerInteractorLogic: class {
     func playerStatusToggle()
     func playNextTrack()
     func playPreviousTrack()
+    func prepareForRemove()
 }
 
 class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlayerOutput {
@@ -36,25 +31,33 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     // MARK: - Properties
     
     var presenter: MainPlayerPresenterLogic!
+    weak var player: PlayerService?
     
     // MARK: - Init
     
-    init(presenter: MainPlayerPresenterLogic) {
+    init(presenter: MainPlayerPresenterLogic, playerService: PlayerService) {
         self.presenter = presenter
+        self.player = playerService
+        self.player?.addObserver(self)
     }
     
     // MARK: - MainPlayerInteractorLogic
     
     func seek(to value: Float) {
-        playerSeekHandler?(value)
+        player?.seek(to: value)
     }
     
     func setVolume(to value: Float) {
-        playerSetVolumeHandler?(value)
+        player?.setVolume(to: value)
     }
     
     func playerStatusToggle() {
-        playerStatusToggleHandler?()
+        guard let player = player else { return }
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
     }
     
     func playNextTrack() {
@@ -63,6 +66,10 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     
     func playPreviousTrack() {
         playPreviousTrackHandler?()
+    }
+    
+    func prepareForRemove() {
+        player?.removeObserver(self)
     }
     
     // MARK: - MainPlayerInput
@@ -87,7 +94,19 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     
     var playNextTrackHandler: (() -> Void)?
     var playPreviousTrackHandler: (() -> Void)?
-    var playerStatusToggleHandler: (() -> Void)?
-    var playerSeekHandler: ((Float) -> Void)?
-    var playerSetVolumeHandler: ((Float) -> Void)?
+}
+
+extension MainPlayerInteractor: PlayerServiceObserver {
+    func eventHandler(event: PlayerServiceEvent) {
+        switch event {
+        case .playDidStart:
+            presenter.presentPlayState()
+        case .playDidPause:
+            presenter.presentPauseState()
+        case .playDidEnd:
+            playNextTrackHandler?()
+        case .currentPlayTimeDidChange(let currentTime, let totalDuration):
+            presenter.presentCurrentPlayTime(currentTime, totalDuration)
+        }
+    }
 }
