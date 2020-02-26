@@ -22,6 +22,8 @@
 		CE3A3B8723CF725900A3AC06 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8523CF725900A3AC06 /* TrackCell.swift */; };
 		CE3A3B8823CF725900A3AC06 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A3B8623CF725900A3AC06 /* TrackCell.xib */; };
 		CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */; };
+		CE42C9B3240545E000DF5A99 /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B2240545E000DF5A99 /* LibraryService.swift */; };
+		CE42C9B5240651D900DF5A99 /* MemoryLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */; };
 		CE510A0E23FE950B004634B0 /* MainPlayerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */; };
 		CE515F4123F9B5E700F436AC /* MainPlayerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */; };
 		CE515F4323F9B5F900F436AC /* MainPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */; };
@@ -63,6 +65,8 @@
 		CE3A3B8523CF725900A3AC06 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		CE3A3B8623CF725900A3AC06 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		CE42C9B2240545E000DF5A99 /* LibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
+		CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryLibraryService.swift; sourceTree = "<group>"; };
 		CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerTransition.swift; sourceTree = "<group>"; };
 		CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerInteractor.swift; sourceTree = "<group>"; };
 		CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerPresenter.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			children = (
 				CE3A3B7423CF2EAC00A3AC06 /* Network */,
 				CE16903723E48CE200C0DBEF /* Player */,
+				CE42C9B1240545BD00DF5A99 /* Library */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -148,6 +153,15 @@
 				CE3A3B8623CF725900A3AC06 /* TrackCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE42C9B1240545BD00DF5A99 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				CE42C9B2240545E000DF5A99 /* LibraryService.swift */,
+				CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		CE515F4423FAF18C00F436AC /* Coordinator */ = {
@@ -380,6 +394,8 @@
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
 				CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */,
+				CE42C9B5240651D900DF5A99 /* MemoryLibraryService.swift in Sources */,
+				CE42C9B3240545E000DF5A99 /* LibraryService.swift in Sources */,
 				CE3A3B8423CF71FF00A3AC06 /* IdentifiableCellProtocol.swift in Sources */,
 				CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */,
 				CE515F4623FAF1AB00F436AC /* Coordinator.swift in Sources */,

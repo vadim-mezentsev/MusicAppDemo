@@ -9,7 +9,9 @@
 import Foundation
 
 protocol SearchPresenterLogic: class {
-    func presentTracks(_ tracks: [TrackContentModel])
+    func presentTracks(_ tracks: [(model: TrackContentModel, isAddedToLibrary: Bool)])
+    func showAddButton(forTrack track: TrackContentModel, at index: Int)
+    func hideAddButton(forTrack track: TrackContentModel, at index: Int)
     func presentError(_ message: String)
     func selectNextTrack(currentIndex: Int, maxIndex: Int)
     func selectPreviousTrack(currentIndex: Int, maxIndex: Int)
@@ -29,18 +31,28 @@ class SearchPresenter: SearchPresenterLogic {
 
     // MARK: - SearchPresenterLogic
     
-    func presentTracks(_ tracks: [TrackContentModel]) {
+    func presentTracks(_ tracks: [(model: TrackContentModel, isAddedToLibrary: Bool)]) {
         
-        let trackCellModels = tracks.map { (trackContentModel) -> TrackCellModel in
-            let imageUrl = trackContentModel.artworkUrl100 != nil ? URL(string: trackContentModel.artworkUrl100!) : nil
-            return TrackCellModel(imageUrl: imageUrl,
-                                  trackTitle: trackContentModel.trackName,
-                                  artist: trackContentModel.artistName,
-                                  collection: trackContentModel.collectionName ?? "Unknown".localized())
+        let trackCellModels = tracks.map { (model, isAddedToLibrary) -> TrackCellModel in
+            return createTrackCellModel(from: model, isAddedToLibrary: isAddedToLibrary)
         }
         
         DispatchQueue.main.async { [weak self] in
             self?.viewController?.displayTracks(trackCellModels)
+        }
+    }
+    
+    func showAddButton(forTrack track: TrackContentModel, at index: Int) {
+        let newTrackCellModel = createTrackCellModel(from: track, isAddedToLibrary: false)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayTrack(newTrackCellModel, at: index)
+        }
+    }
+    
+    func hideAddButton(forTrack track: TrackContentModel, at index: Int) {
+        let newTrackCellModel = createTrackCellModel(from: track, isAddedToLibrary: true)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.displayTrack(newTrackCellModel, at: index)
         }
     }
     
@@ -62,6 +74,17 @@ class SearchPresenter: SearchPresenterLogic {
         DispatchQueue.main.async { [weak self] in
             self?.viewController?.selectCell(at: previousCellRow)
         }
+    }
+    
+    // MARK: - Helper methods
+    
+    private func createTrackCellModel(from model: TrackContentModel, isAddedToLibrary: Bool) -> TrackCellModel {
+        let imageUrl = model.artworkUrl100 != nil ? URL(string: model.artworkUrl100!) : nil
+        return TrackCellModel(imageUrl: imageUrl,
+                              trackTitle: model.trackName,
+                              artist: model.artistName,
+                              collection: model.collectionName ?? "Unknown".localized(),
+                              isAddedToLibrary: isAddedToLibrary)
     }
     
 }

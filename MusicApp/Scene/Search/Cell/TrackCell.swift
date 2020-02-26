@@ -13,9 +13,18 @@ struct TrackCellModel {
     let trackTitle: String
     let artist: String
     let collection: String
+    let isAddedToLibrary: Bool
+}
+
+protocol TrackCellDelegate: class {
+    func addButtomTapped(at indexPath: IndexPath)
 }
 
 class TrackCell: UITableViewCell, IdentifiableCellFromNib {
+    
+    // MARK: - Properties
+    
+    weak var delegate: TrackCellDelegate?
 
     // MARK: - Interface properties
     
@@ -23,6 +32,7 @@ class TrackCell: UITableViewCell, IdentifiableCellFromNib {
     @IBOutlet weak var trackTitleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var collectionLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
 
     // MARK: - Init
     
@@ -40,12 +50,25 @@ class TrackCell: UITableViewCell, IdentifiableCellFromNib {
         super.awakeFromNib()
     }
     
+    // MARK: - IBAction
+    
+    @IBAction func addButtomTapped(_ sender: Any) {
+        guard
+            let tableView = superview as? UITableView,
+            let indexPath = tableView.indexPath(for: self)
+        else {
+            return
+        }
+        delegate?.addButtomTapped(at: indexPath)
+    }
+    
     // MARK: - Setup view
     
     func set(from model: TrackCellModel) {
         trackTitleLabel.text = model.trackTitle
         artistLabel.text = model.artist
         collectionLabel.text = model.collection
+        addButton.isHidden = model.isAddedToLibrary
         
         if let url = model.imageUrl {
             trackImageView.setImage(from: url)

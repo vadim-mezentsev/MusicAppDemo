@@ -21,6 +21,8 @@ protocol SearchInteractorLogic: class {
     func fetchTracks(for term: String)
     func playTrack(index: Int)
     func clearSearchResults()
+    func addTrackToLibrary(index: Int)
+    func prepareForRemove()
 }
 
 class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
@@ -30,13 +32,16 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
     var presenter: SearchPresenterLogic!
     var operationQueue: DispatchQueue!
     var networkService: NetworkService!
+    var libraryService: LibraryService!
     private(set) var tracks: [TrackContentModel]?
     private(set) var currentTrackIndex: Int?
 
     // MARK: - Init
     
-    init(presenter: SearchPresenterLogic) {
+    init(presenter: SearchPresenterLogic, libraryService: LibraryService) {
         self.presenter = presenter
+        self.libraryService = libraryService
+        self.libraryService.addObserver(self)
         self.operationQueue = DispatchQueue(label: "SearchOperationQueue", qos: .userInitiated)
         self.networkService = NetworkService(completionQueue: operationQueue)
     }
@@ -52,7 +57,13 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
                 } else {
                     self?.tracks = responce.results
                     self?.currentTrackIndex = nil
-                    self?.presenter.presentTracks(responce.results)
+                    
+                    let tracks: [(TrackContentModel, Bool)] = responce.results.map { model in
+                        let isAddedToLibrary = self?.libraryService.isTrackInLibrary(track: model) ?? false
+                        return (model, isAddedToLibrary)
+                    }
+                    
+                    self?.presenter.presentTracks(tracks)
                 }
             case .failure(let error):
                 self?.presenter.presentError(error.message)
@@ -71,6 +82,15 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
         currentTrackIndex = nil
     }
     
+    func addTrackToLibrary(index: Int) {
+        guard let trackToLibrary = tracks?[index] else { return }
+        libraryService.add(track: trackToLibrary)
+    }
+    
+    func prepareForRemove() {
+        libraryService.removeObserver(self)
+    }
+    
     // MARK: - SearchInput
     
     func playNextTrack() {
@@ -86,5 +106,30 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
     // MARK: - SearchOutput
     
     var playTrackHandler: ((TrackContentModel) -> Void)?
+    
+}
+
+extension SearchInteractor: LibraryServiceObserver {
+    
+    func eventHandler(event: LibraryServiceEvent) {
+        switch event {
+        case .trackDidAdd(let track):
+            trackDidAddToLibraryHandler(track)
+        case .trackDidRemove(let track):
+            trackDidRemoveFromLibraryHandler(track)
+        }
+    }
+    
+    private func trackDidAddToLibraryHandler(_ track: TrackContentModel) {
+        if let trackIndex = tracks?.firstIndex(of: track) {
+            presenter.hideAddButton(forTrack: track, at: trackIndex)
+        }
+    }
+    
+    private func trackDidRemoveFromLibraryHandler(_ track: TrackContentModel) {
+        if let trackIndex = tracks?.firstIndex(of: track) {
+            presenter.showAddButton(forTrack: track, at: trackIndex)
+        }
+    }
     
 }

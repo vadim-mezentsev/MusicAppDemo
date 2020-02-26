@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TrackContentModel: Decodable {
+struct TrackContentModel: Decodable, Equatable {
     let trackName: String
     let artistName: String
     let collectionName: String?

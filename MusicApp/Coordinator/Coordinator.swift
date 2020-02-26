@@ -24,6 +24,7 @@ class MainCoordinator: Coordinator {
     var miniPlayerViewController: MiniPlayerViewController!
     
     var player: PlayerService = AVPlayerService()
+    var library: LibraryService = MemoryLibraryService()
     
     // MARK: - Init
     
@@ -53,7 +54,7 @@ class MainCoordinator: Coordinator {
     // MARK: - SearchViewController setup
     
     private func createSearchViewController() -> SearchViewController {
-        let searchViewController = SearchViewController()
+        let searchViewController = SearchViewController(libraryService: library)
         searchViewController.output.playTrackHandler = searchViewControllerPlayTrackHandler
         return searchViewController
     }
