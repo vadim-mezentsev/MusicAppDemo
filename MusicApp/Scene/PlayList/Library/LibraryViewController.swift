@@ -17,16 +17,7 @@ protocol LibraryViewDisplayLogic: class {
     func deselectTrack(at index: IndexPath)
 }
 
-class LibraryViewController: UIViewController {
-    
-    // MARK: - Types
-    
-    enum State {
-        case wait
-        case loading
-        case show
-        case error
-    }
+class LibraryViewController: PlayListViewController {
     
     // MARK: - View data
     
@@ -37,18 +28,6 @@ class LibraryViewController: UIViewController {
     var input: LibraryInput!
     var output: LibraryOutput!
     var interactor: LibraryInteractorLogic!
-    var state: LibraryViewController.State! {
-        didSet {
-            changeState(to: state)
-        }
-    }
-    
-    // MARK: - Load view
-    
-    var libraryView = PlayListView()
-    override func loadView() {
-        view = libraryView
-    }
     
     // MARK: - Init
     
@@ -87,29 +66,14 @@ class LibraryViewController: UIViewController {
     // MARK: - Interface preparation
 
     private func setupView() {
-        state = .wait
+        playListView.defaultHintLabelText = "Add tracks to library".localized()
 
-        libraryView.tableView.dataSource = self
-        libraryView.tableView.delegate = self
+        playListView.tableView.dataSource = self
+        playListView.tableView.delegate = self
+                
+        state = .wait
         
         interactor.fetchTracks()
-    }
-    
-    private func changeState(to state: LibraryViewController.State) {
-        switch state {
-        case .wait:
-            libraryView.hintLabel.text = "Add tracks to library".localized()
-            libraryView.hideSubviews(except: [libraryView.hintLabel])
-        case .loading:
-            libraryView.activityIndicator.startAnimating()
-            libraryView.hideSubviews(except: [libraryView.activityIndicator])
-        case .show:
-            libraryView.activityIndicator.stopAnimating()
-            libraryView.showSubviews(except: [libraryView.activityIndicator, libraryView.hintLabel])
-        case .error:
-            libraryView.activityIndicator.stopAnimating()
-            libraryView.hideSubviews(except: [libraryView.hintLabel])
-        }
     }
 
 }
@@ -120,35 +84,35 @@ extension LibraryViewController: LibraryViewDisplayLogic {
     
     func displayTracks(_ trackCellModels: [TrackCellModel]) {
         cellViewModels = trackCellModels
-        libraryView.tableView.reloadData()
+        playListView.tableView.reloadData()
         state = .show
     }
     
     func displayNewTrack(_ trackCellModel: TrackCellModel) {
         cellViewModels.append(trackCellModel)
-        libraryView.tableView.reloadData()
+        playListView.tableView.reloadData()
         state = .show
     }
     
     func removeTrack(at index: Int) {
         cellViewModels.remove(at: index)
-        libraryView.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        playListView.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         state = cellViewModels.isEmpty ? .wait : .show
     }
     
     func displayError(_ message: String) {
-        libraryView.hintLabel.text = message
+        playListView.hintLabel.text = message
         state = .error
     }
         
     func selectCell(at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
-        libraryView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+        playListView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         interactor.playTrack(index: indexPath.row)
     }
     
     func deselectTrack(at indexPath: IndexPath) {
-        libraryView.tableView.deselectRow(at: indexPath, animated: false)
+        playListView.tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }

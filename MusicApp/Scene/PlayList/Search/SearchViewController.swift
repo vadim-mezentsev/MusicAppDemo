@@ -16,16 +16,7 @@ protocol SearchViewDisplayLogic: class {
     func deselectTrack(at indexPath: IndexPath)
 }
 
-class SearchViewController: UIViewController {
-
-    // MARK: - Types
-    
-    enum State {
-        case wait
-        case loading
-        case show
-        case error
-    }
+class SearchViewController: PlayListViewController {
     
     // MARK: - View data
     
@@ -36,19 +27,7 @@ class SearchViewController: UIViewController {
     var input: SearchInput!
     var output: SearchOutput!
     var interactor: SearchInteractorLogic!
-    var state: SearchViewController.State! {
-        didSet {
-            changeState(to: state)
-        }
-    }
     private var timer: Timer?
-    
-    // MARK: - Load view
-    
-    var searchView = PlayListView()
-    override func loadView() {
-        view = searchView
-    }
 
     // MARK: - Init
     
@@ -87,31 +66,16 @@ class SearchViewController: UIViewController {
     // MARK: - Interface preparation
 
     private func setupView() {
-        state = .wait
+        playListView.defaultHintLabelText = "Enter your search term above".localized()
         
-        navigationItem.searchController = searchView.searchController
+        navigationItem.searchController = playListView.searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        searchView.searchController.searchBar.delegate = self
-        searchView.tableView.dataSource = self
-        searchView.tableView.delegate = self
-    }
-    
-    private func changeState(to state: SearchViewController.State) {
-        switch state {
-        case .wait:
-            searchView.hintLabel.text = "Enter your search term above".localized()
-            searchView.hideSubviews(except: [searchView.hintLabel])
-        case .loading:
-            searchView.activityIndicator.startAnimating()
-            searchView.hideSubviews(except: [searchView.activityIndicator])
-        case .show:
-            searchView.activityIndicator.stopAnimating()
-            searchView.showSubviews(except: [searchView.activityIndicator, searchView.hintLabel])
-        case .error:
-            searchView.activityIndicator.stopAnimating()
-            searchView.hideSubviews(except: [searchView.hintLabel])
-        }
+        playListView.searchController.searchBar.delegate = self
+        playListView.tableView.dataSource = self
+        playListView.tableView.delegate = self
+        
+        state = .wait
     }
     
 }
@@ -122,30 +86,30 @@ extension SearchViewController: SearchViewDisplayLogic {
     
     func displayTracks(_ trackCellModels: [TrackCellModel]) {
         cellViewModels = trackCellModels
-        searchView.tableView.reloadData()
+        playListView.tableView.reloadData()
         state = .show
     }
     
     func displayTrack(_ trackCellModel: TrackCellModel, at index: Int) {
         cellViewModels[index] = trackCellModel
-        if let cell = searchView.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? TrackCell {
+        if let cell = playListView.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? TrackCell {
             cell.set(from: trackCellModel)
         }
     }
     
     func displayError(_ message: String) {
-        searchView.hintLabel.text = message
+        playListView.hintLabel.text = message
         state = .error
     }
         
     func selectCell(at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
-        searchView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+        playListView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         interactor.playTrack(index: indexPath.row)
     }
     
     func deselectTrack(at indexPath: IndexPath) {
-        searchView.tableView.deselectRow(at: indexPath, animated: false)
+        playListView.tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }
@@ -177,7 +141,7 @@ extension SearchViewController: UITableViewDelegate {
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        searchView.searchController.searchBar.resignFirstResponder()
+        playListView.searchController.searchBar.resignFirstResponder()
     }
 }
 
@@ -212,9 +176,9 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         state = .wait
-        searchView.tableView.stopDecelerating()
+        playListView.tableView.stopDecelerating()
         cellViewModels = []
-        searchView.tableView.reloadData()
+        playListView.tableView.reloadData()
         interactor.clearSearchResults()
     }
     
