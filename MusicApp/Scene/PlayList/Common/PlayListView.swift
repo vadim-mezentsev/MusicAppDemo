@@ -1,14 +1,14 @@
 //
-//  LibraryView.swift
+//  PlayListView.swift
 //  MusicApp
 //
-//  Created by Vadim on 26/02/2020.
+//  Created by Vadim on 14/01/2020.
 //  Copyright © 2020 Vadim Mezentsev. All rights reserved.
 //
 
 import UIKit
 
-class LibraryView: UIView {
+class PlayListView: UIView {
 
     // MARK: - Appereance
     
@@ -16,6 +16,13 @@ class LibraryView: UIView {
     var tableViewBottomInset: CGFloat = 252
     
     // MARK: - Interface properties
+
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchBar.placeholder = "SearchBarPlaceholder".localized()
+        searchController.obscuresBackgroundDuringPresentation = false
+        return searchController
+    }()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()

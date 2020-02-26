@@ -45,7 +45,7 @@ class SearchViewController: UIViewController {
     
     // MARK: - Load view
     
-    var searchView = SearchView()
+    var searchView = PlayListView()
     override func loadView() {
         view = searchView
     }

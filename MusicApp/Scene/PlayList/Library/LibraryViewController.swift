@@ -45,7 +45,7 @@ class LibraryViewController: UIViewController {
     
     // MARK: - Load view
     
-    var libraryView = LibraryView()
+    var libraryView = PlayListView()
     override func loadView() {
         view = libraryView
     }
