@@ -24,6 +24,9 @@
 		CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */; };
 		CE42C9B3240545E000DF5A99 /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B2240545E000DF5A99 /* LibraryService.swift */; };
 		CE42C9B5240651D900DF5A99 /* MemoryLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */; };
+		CE42C9B724065A5500DF5A99 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B624065A5500DF5A99 /* LibraryView.swift */; };
+		CE42C9B924065A7600DF5A99 /* LibraryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9B824065A7600DF5A99 /* LibraryInteractor.swift */; };
+		CE42C9BB24065AAB00DF5A99 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42C9BA24065AAB00DF5A99 /* LibraryPresenter.swift */; };
 		CE510A0E23FE950B004634B0 /* MainPlayerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */; };
 		CE515F4123F9B5E700F436AC /* MainPlayerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */; };
 		CE515F4323F9B5F900F436AC /* MainPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */; };
@@ -67,6 +70,9 @@
 		CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		CE42C9B2240545E000DF5A99 /* LibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
 		CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryLibraryService.swift; sourceTree = "<group>"; };
+		CE42C9B624065A5500DF5A99 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		CE42C9B824065A7600DF5A99 /* LibraryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInteractor.swift; sourceTree = "<group>"; };
+		CE42C9BA24065AAB00DF5A99 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
 		CE510A0D23FE950B004634B0 /* MainPlayerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerTransition.swift; sourceTree = "<group>"; };
 		CE515F4023F9B5E700F436AC /* MainPlayerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerInteractor.swift; sourceTree = "<group>"; };
 		CE515F4223F9B5F900F436AC /* MainPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerPresenter.swift; sourceTree = "<group>"; };
@@ -248,7 +254,10 @@
 		CE7AB73123CDEEE300CF9EF8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				CE42C9B624065A5500DF5A99 /* LibraryView.swift */,
 				CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */,
+				CE42C9B824065A7600DF5A99 /* LibraryInteractor.swift */,
+				CE42C9BA24065AAB00DF5A99 /* LibraryPresenter.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -406,6 +415,7 @@
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
 				CE3A3B7B23CF320500A3AC06 /* NetworkService.swift in Sources */,
 				CE515F5523FD3ADD00F436AC /* MiniPlayerPresenter.swift in Sources */,
+				CE42C9B924065A7600DF5A99 /* LibraryInteractor.swift in Sources */,
 				CE7AB74023CE0AF900CF9EF8 /* SearchView.swift in Sources */,
 				CE515F4F23FD397000F436AC /* MiniPlayerView.swift in Sources */,
 				CE510A0E23FE950B004634B0 /* MainPlayerTransition.swift in Sources */,
@@ -416,7 +426,9 @@
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
 				CE3A3B7923CF31DF00A3AC06 /* NetworkError.swift in Sources */,
 				CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */,
+				CE42C9B724065A5500DF5A99 /* LibraryView.swift in Sources */,
 				CE515F4123F9B5E700F436AC /* MainPlayerInteractor.swift in Sources */,
+				CE42C9BB24065AAB00DF5A99 /* LibraryPresenter.swift in Sources */,
 				CE16903923E48D0900C0DBEF /* PlayerService.swift in Sources */,
 				CE3A3B8723CF725900A3AC06 /* TrackCell.swift in Sources */,
 				CE3A3B8123CF35F300A3AC06 /* TrackContentModel.swift in Sources */,

@@ -1,38 +1,39 @@
 //
-//  SearchPresenter.swift
+//  LibraryPresenter.swift
 //  MusicApp
 //
-//  Created by Vadim on 15/01/2020.
+//  Created by Vadim on 26/02/2020.
 //  Copyright © 2020 Vadim Mezentsev. All rights reserved.
 //
 
 import Foundation
 
-protocol SearchPresenterLogic: class {
+protocol LibraryPresenterLogic: class {
     func presentTracks(_ tracks: [(model: TrackContentModel, isAddedToLibrary: Bool)])
-    func showAddButton(forTrack track: TrackContentModel, at index: Int)
-    func hideAddButton(forTrack track: TrackContentModel, at index: Int)
+    func addTrack(_ track: TrackContentModel)
+    func removeTrack(at index: Int)
     func presentError(_ message: String)
     func selectNextTrack(currentIndex: Int, maxIndex: Int)
     func selectPreviousTrack(currentIndex: Int, maxIndex: Int)
     func deselectTrack(at index: Int)
 }
 
-class SearchPresenter: SearchPresenterLogic {
+class LibraryPresenter: LibraryPresenterLogic {
 
     // MARK: - Properties
     
-    weak var viewController: SearchViewDisplayLogic?
+    weak var viewController: LibraryViewDisplayLogic?
 
     // MARK: - Init
     
-    init(viewController: SearchViewDisplayLogic) {
+    init(viewController: LibraryViewDisplayLogic) {
         self.viewController = viewController
     }
 
     // MARK: - SearchPresenterLogic
     
     func presentTracks(_ tracks: [(model: TrackContentModel, isAddedToLibrary: Bool)]) {
+        guard !tracks.isEmpty else { return }
         
         let trackCellModels = tracks.map { (model, isAddedToLibrary) -> TrackCellModel in
             return createTrackCellModel(from: model, isAddedToLibrary: isAddedToLibrary)
@@ -43,17 +44,16 @@ class SearchPresenter: SearchPresenterLogic {
         }
     }
     
-    func showAddButton(forTrack track: TrackContentModel, at index: Int) {
-        let newTrackCellModel = createTrackCellModel(from: track, isAddedToLibrary: false)
+    func addTrack(_ track: TrackContentModel) {
+        let newTrackCellModel = createTrackCellModel(from: track, isAddedToLibrary: true)
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.displayTrack(newTrackCellModel, at: index)
+            self?.viewController?.displayNewTrack(newTrackCellModel)
         }
     }
     
-    func hideAddButton(forTrack track: TrackContentModel, at index: Int) {
-        let newTrackCellModel = createTrackCellModel(from: track, isAddedToLibrary: true)
+    func removeTrack(at index: Int) {
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.displayTrack(newTrackCellModel, at: index)
+            self?.viewController?.removeTrack(at: index)
         }
     }
     

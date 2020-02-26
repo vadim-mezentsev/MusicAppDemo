@@ -13,6 +13,7 @@ protocol SearchViewDisplayLogic: class {
     func displayTrack(_ trackCellModel: TrackCellModel, at index: Int)
     func displayError(_ message: String)
     func selectCell(at row: Int)
+    func deselectTrack(at indexPath: IndexPath)
 }
 
 class SearchViewController: UIViewController {
@@ -141,6 +142,10 @@ extension SearchViewController: SearchViewDisplayLogic {
         let indexPath = IndexPath(row: row, section: 0)
         searchView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         interactor.playTrack(index: indexPath.row)
+    }
+    
+    func deselectTrack(at indexPath: IndexPath) {
+        searchView.tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }

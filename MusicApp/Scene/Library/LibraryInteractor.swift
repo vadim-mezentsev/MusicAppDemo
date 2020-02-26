@@ -1,74 +1,57 @@
 //
-//  SearchInteractor.swift
+//  LibraryInteractor.swift
 //  MusicApp
 //
-//  Created by Vadim on 15/01/2020.
+//  Created by Vadim on 26/02/2020.
 //  Copyright © 2020 Vadim Mezentsev. All rights reserved.
 //
 
 import Foundation
 
-protocol SearchInput: class {
+protocol LibraryInput: class {
     func playNextTrack()
     func playPreviousTrack()
     func deselectTrack()
 }
 
-protocol SearchOutput: class {
+protocol LibraryOutput: class {
     var playTrackHandler: ((TrackContentModel) -> Void)? { get set }
 }
 
-protocol SearchInteractorLogic: class {
-    func fetchTracks(for term: String)
+protocol LibraryInteractorLogic: class {
+    func fetchTracks()
     func playTrack(index: Int)
-    func clearSearchResults()
-    func addTrackToLibrary(index: Int)
+    func removeTrack(at index: Int)
     func prepareForRemove()
 }
 
-class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
+class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
 
     // MARK: - Properties
     
-    var presenter: SearchPresenterLogic!
+    var presenter: LibraryPresenterLogic!
     var operationQueue: DispatchQueue!
-    var networkService: NetworkService!
     var libraryService: LibraryService!
     private(set) var tracks: [TrackContentModel]?
     private(set) var currentTrackIndex: Int?
 
     // MARK: - Init
     
-    init(presenter: SearchPresenterLogic, libraryService: LibraryService) {
+    init(presenter: LibraryPresenterLogic, libraryService: LibraryService) {
         self.presenter = presenter
         self.libraryService = libraryService
         self.libraryService.addObserver(self)
-        self.operationQueue = DispatchQueue(label: "SearchOperationQueue", qos: .userInitiated)
-        self.networkService = NetworkService(completionQueue: operationQueue)
+        self.operationQueue = DispatchQueue(label: "LibraryOperationQueue", qos: .userInitiated)
     }
   
     // MARK: - SearchInteractorLogic
     
-    func fetchTracks(for term: String) {
-        networkService.fetchTracks(term: term) { [weak self] (result) in
-            switch result {
-            case .success(let responce):
-                if responce.results.isEmpty {
-                    self?.presenter.presentError("Your search returned no results".localized())
-                } else {
-                    self?.tracks = responce.results
-                    self?.currentTrackIndex = nil
-                    
-                    let tracks: [(TrackContentModel, Bool)] = responce.results.map { model in
-                        let isAddedToLibrary = self?.libraryService.isTrackInLibrary(track: model) ?? false
-                        return (model, isAddedToLibrary)
-                    }
-                    
-                    self?.presenter.presentTracks(tracks)
-                }
-            case .failure(let error):
-                self?.presenter.presentError(error.message)
-            }
+    func fetchTracks() {
+        libraryService.fetchTracks { [weak self] (models) in
+            self?.tracks = models
+            self?.currentTrackIndex = nil
+            let tracks: [(TrackContentModel, Bool)] = models.map { ($0, true) }
+            self?.presenter.presentTracks(tracks)
         }
     }
     
@@ -78,14 +61,9 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
         playTrackHandler?(trackModel)
     }
     
-    func clearSearchResults() {
-        tracks = nil
-        currentTrackIndex = nil
-    }
-    
-    func addTrackToLibrary(index: Int) {
-        guard let trackToLibrary = tracks?[index] else { return }
-        libraryService.add(track: trackToLibrary)
+    func removeTrack(at index: Int) {
+        guard let trckForRemove = tracks?[index] else { return }
+        libraryService.remove(track: trckForRemove)
     }
     
     func prepareForRemove() {
@@ -116,7 +94,7 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
     
 }
 
-extension SearchInteractor: LibraryServiceObserver {
+extension LibraryInteractor: LibraryServiceObserver {
     
     func eventHandler(event: LibraryServiceEvent) {
         switch event {
@@ -128,14 +106,18 @@ extension SearchInteractor: LibraryServiceObserver {
     }
     
     private func trackDidAddToLibraryHandler(_ track: TrackContentModel) {
-        if let trackIndex = tracks?.firstIndex(of: track) {
-            presenter.hideAddButton(forTrack: track, at: trackIndex)
-        }
+        guard let tracks = tracks, !tracks.contains(track) else { return }
+        presenter.addTrack(track)
+        self.tracks?.append(track)
     }
     
     private func trackDidRemoveFromLibraryHandler(_ track: TrackContentModel) {
         if let trackIndex = tracks?.firstIndex(of: track) {
-            presenter.showAddButton(forTrack: track, at: trackIndex)
+            presenter.removeTrack(at: trackIndex)
+            tracks?.remove(at: trackIndex)
+            if let currentTrackIndex = currentTrackIndex, currentTrackIndex == trackIndex {
+                self.currentTrackIndex = nil
+            }
         }
     }
     

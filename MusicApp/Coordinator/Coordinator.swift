@@ -13,6 +13,13 @@ protocol Coordinator {
 }
 
 class MainCoordinator: Coordinator {
+     
+    // MARK: - Types
+    
+    enum PlaySource {
+        case search
+        case library
+    }
     
     // MARK: - Properties
 
@@ -25,6 +32,7 @@ class MainCoordinator: Coordinator {
     
     var player: PlayerService = AVPlayerService()
     var library: LibraryService = MemoryLibraryService()
+    var playSource: PlaySource?
     
     // MARK: - Init
     
@@ -60,17 +68,23 @@ class MainCoordinator: Coordinator {
     }
     
     private func searchViewControllerPlayTrackHandler(trackModel: TrackContentModel) {
-        guard let trackUrlString = trackModel.previewUrl, let trackUrl = URL(string: trackUrlString) else { return }
-        mainPlayerViewController.input.setTrack(from: trackModel)
-        miniPlayerViewController.input.setTrack(from: trackModel)
-        player.setTrack(from: trackUrl)
+        playTrack(from: trackModel)
+        playSource = .search
+        libraryViewController.input.deselectTrack()
     }
 
     // MARK: - LibraryViewController setup
     
     private func createLibraryViewController() -> LibraryViewController {
-        let libraryViewController = LibraryViewController()
+        let libraryViewController = LibraryViewController(libraryService: library)
+        libraryViewController.output.playTrackHandler = libraryViewControllerPlayTrackHandler
         return libraryViewController
+    }
+    
+    private func libraryViewControllerPlayTrackHandler(trackModel: TrackContentModel) {
+        playTrack(from: trackModel)
+        playSource = .library
+        searchViewController.input.deselectTrack()
     }
     
     // MARK: - MainPlayerViewController setup
@@ -83,11 +97,11 @@ class MainCoordinator: Coordinator {
     }
     
     private func mainPlayerViewControllerPlayNextTrackHandler() {
-        searchViewController.input.playNextTrack()
+        playNextTrack()
     }
     
     private func mainPlayerViewControllerPlayPreviousTrackHandler() {
-        searchViewController.input.playPreviousTrack()
+        playPreviousTrack()
     }
     
     // MARK: - MiniPlayerViewController setup
@@ -100,7 +114,7 @@ class MainCoordinator: Coordinator {
     }
     
     private func miniPlayerViewControllerPlayNextTrackHandler() {
-        searchViewController.input.playNextTrack()
+        playNextTrack()
     }
     
     private func miniPlayerViewControllerShowMainPlayerHandler() {
@@ -110,4 +124,32 @@ class MainCoordinator: Coordinator {
         miniPlayerViewController.present(mainPlayerViewController, animated: true)
     }
 
+    // MARK: - Helper methods
+    
+    private func playTrack(from trackModel: TrackContentModel) {
+        guard let trackUrlString = trackModel.previewUrl, let trackUrl = URL(string: trackUrlString) else { return }
+        mainPlayerViewController.input.setTrack(from: trackModel)
+        miniPlayerViewController.input.setTrack(from: trackModel)
+        player.setTrack(from: trackUrl)
+    }
+    
+    private func playNextTrack() {
+        guard let playSource = playSource else { return }
+        switch playSource {
+        case .search:
+            searchViewController.input.playNextTrack()
+        case .library:
+            libraryViewController.input.playNextTrack()
+        }
+    }
+    
+    private func playPreviousTrack() {
+        guard let playSource = playSource else { return }
+        switch playSource {
+        case .search:
+            searchViewController.input.playPreviousTrack()
+        case .library:
+            libraryViewController.input.playPreviousTrack()
+        }
+    }
 }
