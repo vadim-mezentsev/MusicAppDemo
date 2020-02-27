@@ -51,6 +51,7 @@
 		CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EECCD23D06DF50078745B /* MainPlayerView.swift */; };
 		CEEA02122406FAA40093BEAF /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02112406FAA40093BEAF /* PlayListViewController.swift */; };
 		CEEA0214240799AF0093BEAF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA0213240799AF0093BEAF /* Notification.swift */; };
+		CEEA02182407E5910093BEAF /* AVPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02172407E5910093BEAF /* AVPlayerService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		CE8EECCD23D06DF50078745B /* MainPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerView.swift; sourceTree = "<group>"; };
 		CEEA02112406FAA40093BEAF /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
 		CEEA0213240799AF0093BEAF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		CEEA02172407E5910093BEAF /* AVPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				CE16903823E48D0900C0DBEF /* PlayerService.swift */,
+				CEEA02172407E5910093BEAF /* AVPlayerService.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */,
 				CE3A3B8A23CF7E9400A3AC06 /* WebImageView.swift in Sources */,
 				CE7AB72A23CDDC8B00CF9EF8 /* MainTabBarController.swift in Sources */,
+				CEEA02182407E5910093BEAF /* AVPlayerService.swift in Sources */,
 				CE3A3B7923CF31DF00A3AC06 /* NetworkError.swift in Sources */,
 				CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */,
 				CE515F4123F9B5E700F436AC /* MainPlayerInteractor.swift in Sources */,
