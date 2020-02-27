@@ -12,9 +12,9 @@ protocol LibraryViewDisplayLogic: class {
     func displayTracks(_ trackCellModels: [TrackCellModel])
     func displayNewTrack(_ trackCellModel: TrackCellModel)
     func removeTrack(at index: Int)
+    func selectTrack(at index: Int)
+    func deselectTrack(at index: Int)
     func displayError(_ message: String)
-    func selectCell(at row: Int)
-    func deselectTrack(at index: IndexPath)
 }
 
 class LibraryViewController: PlayListViewController {
@@ -105,13 +105,14 @@ extension LibraryViewController: LibraryViewDisplayLogic {
         state = .error
     }
         
-    func selectCell(at row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
+    func selectTrack(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
         playListView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         interactor.playTrack(index: indexPath.row)
     }
     
-    func deselectTrack(at indexPath: IndexPath) {
+    func deselectTrack(at indexPath: Int) {
+        let indexPath = IndexPath(row: indexPath, section: 0)
         playListView.tableView.deselectRow(at: indexPath, animated: false)
     }
     

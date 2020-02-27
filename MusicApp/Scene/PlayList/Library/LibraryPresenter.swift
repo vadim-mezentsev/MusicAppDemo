@@ -66,21 +66,20 @@ class LibraryPresenter: LibraryPresenterLogic {
     func selectNextTrack(currentIndex: Int, maxIndex: Int) {
         let nextCellRow = currentIndex + 1 <= maxIndex ? currentIndex + 1 : 0
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.selectCell(at: nextCellRow)
+            self?.viewController?.selectTrack(at: nextCellRow)
         }
     }
     
     func selectPreviousTrack(currentIndex: Int, maxIndex: Int) {
         let previousCellRow = currentIndex - 1 >= 0 ? currentIndex - 1 : maxIndex
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.selectCell(at: previousCellRow)
+            self?.viewController?.selectTrack(at: previousCellRow)
         }
     }
     
     func deselectTrack(at index: Int) {
-        let indexPath = IndexPath(row: index, section: 0)
         DispatchQueue.main.async { [weak self] in
-            self?.viewController?.deselectTrack(at: indexPath)
+            self?.viewController?.deselectTrack(at: index)
         }
     }
     

@@ -11,9 +11,9 @@ import UIKit
 protocol SearchViewDisplayLogic: class {
     func displayTracks(_ trackCellModels: [TrackCellModel])
     func displayTrack(_ trackCellModel: TrackCellModel, at index: Int)
+    func selectTrack(at index: Int)
+    func deselectTrack(at index: Int)
     func displayError(_ message: String)
-    func selectCell(at row: Int)
-    func deselectTrack(at indexPath: IndexPath)
 }
 
 class SearchViewController: PlayListViewController {
@@ -102,13 +102,14 @@ extension SearchViewController: SearchViewDisplayLogic {
         state = .error
     }
         
-    func selectCell(at row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
+    func selectTrack(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
         playListView.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         interactor.playTrack(index: indexPath.row)
     }
     
-    func deselectTrack(at indexPath: IndexPath) {
+    func deselectTrack(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
         playListView.tableView.deselectRow(at: indexPath, animated: false)
     }
     
