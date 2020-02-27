@@ -17,11 +17,7 @@ protocol LibraryService: class {
     func removeObserver(_ observer: LibraryServiceObserver)
 }
 
-enum LibraryServiceEvent {
-    case trackDidAdd(TrackContentModel)
-    case trackDidRemove(TrackContentModel)
-}
-
 protocol LibraryServiceObserver: class {
-     func eventHandler(event: LibraryServiceEvent)
+    func trackDidAddToLibrary(_ track: TrackContentModel)
+    func trackDidRemoveFromLibrary(_ track: TrackContentModel)
 }

@@ -97,16 +97,21 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
 }
 
 extension MainPlayerInteractor: PlayerServiceObserver {
-    func eventHandler(event: PlayerServiceEvent) {
-        switch event {
-        case .playDidStart:
-            presenter.presentPlayState()
-        case .playDidPause:
-            presenter.presentPauseState()
-        case .playDidEnd:
-            playNextTrackHandler?()
-        case .currentPlayTimeDidChange(let currentTime, let totalDuration):
-            presenter.presentCurrentPlayTime(currentTime, totalDuration)
-        }
+    
+    func playDidStart() {
+        presenter.presentPlayState()
     }
+    
+    func playDidPause() {
+        presenter.presentPauseState()
+    }
+    
+    func playDidEnd() {
+        playNextTrackHandler?()
+    }
+    
+    func currentPlayTimeDidChange(_ currentTime: Float64, _ totalDuration: Float64) {
+        presenter.presentCurrentPlayTime(currentTime, totalDuration)
+    }
+
 }

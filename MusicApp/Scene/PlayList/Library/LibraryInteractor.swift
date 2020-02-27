@@ -96,22 +96,13 @@ class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
 
 extension LibraryInteractor: LibraryServiceObserver {
     
-    func eventHandler(event: LibraryServiceEvent) {
-        switch event {
-        case .trackDidAdd(let track):
-            trackDidAddToLibraryHandler(track)
-        case .trackDidRemove(let track):
-            trackDidRemoveFromLibraryHandler(track)
-        }
-    }
-    
-    private func trackDidAddToLibraryHandler(_ track: TrackContentModel) {
+    func trackDidAddToLibrary(_ track: TrackContentModel) {
         guard let tracks = tracks, !tracks.contains(track) else { return }
         presenter.addTrack(track)
         self.tracks?.append(track)
     }
     
-    private func trackDidRemoveFromLibraryHandler(_ track: TrackContentModel) {
+    func trackDidRemoveFromLibrary(_ track: TrackContentModel) {
         if let trackIndex = tracks?.firstIndex(of: track) {
             presenter.removeTrack(at: trackIndex)
             tracks?.remove(at: trackIndex)

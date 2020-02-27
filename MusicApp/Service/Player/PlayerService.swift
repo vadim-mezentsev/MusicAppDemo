@@ -28,7 +28,18 @@ enum PlayerServiceEvent {
 }
 
 protocol PlayerServiceObserver: class {
-     func eventHandler(event: PlayerServiceEvent)
+    func playDidStart()
+    func playDidPause()
+    func playDidEnd()
+    func currentPlayTimeDidChange(_ currentTime: Float64, _ totalDuration: Float64)
+}
+
+extension PlayerServiceObserver {
+    func playDidStart() {}
+    func playDidPause() {}
+    func playDidEnd() {}
+    func currentPlayTimeDidChange(_ currentTime: Float64, _ totalDuration: Float64) {}
+
 }
 
 class AVPlayerService: PlayerService {
@@ -39,7 +50,7 @@ class AVPlayerService: PlayerService {
         player.timeControlStatus == .playing ? true : false
     }
     
-    private var observers = [PlayerServiceObserver]()
+    private(set) var notification = NotificationManager<PlayerServiceObserver>()
     private let player: AVPlayer = {
         let player = AVPlayer()
         player.automaticallyWaitsToMinimizeStalling = false
@@ -66,12 +77,12 @@ class AVPlayerService: PlayerService {
     
     func play() {
         player.play()
-        notify(event: .playDidStart)
+        notification.notify { $0.playDidStart() }
     }
     
     func pause() {
         player.pause()
-        notify(event: .playDidPause)
+        notification.notify { $0.playDidPause() }
     }
     
     func seek(to percentage: Float) {
@@ -90,15 +101,12 @@ class AVPlayerService: PlayerService {
     }
     
     func addObserver(_ observer: PlayerServiceObserver) {
-        observers.append(observer)
+        notification.addObserver(observer)
+        
     }
 
     func removeObserver(_ observer: PlayerServiceObserver) {
-        observers = observers.filter { $0 !== observer}
-    }
-    
-    func notify(event: PlayerServiceEvent) {
-        observers.forEach { $0.eventHandler(event: event) }
+        notification.removeObserver(observer)
     }
     
     // MARK: - AVPlayer observers
@@ -107,7 +115,7 @@ class AVPlayerService: PlayerService {
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: completionQueue) { [weak self] in
-            self?.notify(event: .playDidStart)
+            self?.notification.notify { $0.playDidStart() }
         }
     }
     
@@ -117,11 +125,11 @@ class AVPlayerService: PlayerService {
             guard let self = self else { return }
             guard let currentItem = self.player.currentItem else { return }
             if currentItem.duration == currentItem.currentTime() {
-                self.notify(event: .playDidEnd)
+                self.notification.notify { $0.playDidEnd() }
             } else {
                 let durationTime = CMTimeGetSeconds(currentItem.duration)
                 let currentTime = CMTimeGetSeconds(currentItem.currentTime())
-                self.notify(event: .currentPlayTimeDidChange(currentTime: currentTime, totalDuration: durationTime))
+                self.notification.notify { $0.currentPlayTimeDidChange(currentTime, durationTime) }
             }
         }
     }

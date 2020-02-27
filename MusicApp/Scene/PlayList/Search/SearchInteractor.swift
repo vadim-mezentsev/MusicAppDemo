@@ -118,25 +118,16 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
 
 extension SearchInteractor: LibraryServiceObserver {
     
-    func eventHandler(event: LibraryServiceEvent) {
-        switch event {
-        case .trackDidAdd(let track):
-            trackDidAddToLibraryHandler(track)
-        case .trackDidRemove(let track):
-            trackDidRemoveFromLibraryHandler(track)
-        }
-    }
-    
-    private func trackDidAddToLibraryHandler(_ track: TrackContentModel) {
+    func trackDidAddToLibrary(_ track: TrackContentModel) {
         if let trackIndex = tracks?.firstIndex(of: track) {
             presenter.hideAddButton(forTrack: track, at: trackIndex)
         }
     }
     
-    private func trackDidRemoveFromLibraryHandler(_ track: TrackContentModel) {
+    func trackDidRemoveFromLibrary(_ track: TrackContentModel) {
         if let trackIndex = tracks?.firstIndex(of: track) {
             presenter.showAddButton(forTrack: track, at: trackIndex)
         }
     }
-    
+
 }

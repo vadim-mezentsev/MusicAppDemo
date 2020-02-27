@@ -50,6 +50,7 @@
 		CE8EECCC23D06DD00078745B /* MainPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8EECCB23D06DD00078745B /* MainPlayerView.xib */; };
 		CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EECCD23D06DF50078745B /* MainPlayerView.swift */; };
 		CEEA02122406FAA40093BEAF /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02112406FAA40093BEAF /* PlayListViewController.swift */; };
+		CEEA0214240799AF0093BEAF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA0213240799AF0093BEAF /* Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		CE8EECCB23D06DD00078745B /* MainPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainPlayerView.xib; sourceTree = "<group>"; };
 		CE8EECCD23D06DF50078745B /* MainPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerView.swift; sourceTree = "<group>"; };
 		CEEA02112406FAA40093BEAF /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
+		CEEA0213240799AF0093BEAF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 				CE8EECC823D06B000078745B /* UITableView + extension.swift */,
 				CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */,
 				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
+				CEEA0213240799AF0093BEAF /* Notification.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */,
 				CE515F4623FAF1AB00F436AC /* Coordinator.swift in Sources */,
 				CE3A3B7723CF2F5400A3AC06 /* ItunesUrlHelper.swift in Sources */,
+				CEEA0214240799AF0093BEAF /* Notification.swift in Sources */,
 				CE515F5323FD3ACC00F436AC /* MiniPlayerInteractor.swift in Sources */,
 				CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */,
 				CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */,

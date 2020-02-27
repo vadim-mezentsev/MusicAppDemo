@@ -83,14 +83,13 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
 }
 
 extension MiniPlayerInteractor: PlayerServiceObserver {
-    func eventHandler(event: PlayerServiceEvent) {
-        switch event {
-        case .playDidStart:
-            presenter.presentPlayState()
-        case .playDidPause:
-            presenter.presentPauseState()
-        default:
-            return
-        }
+    
+    func playDidStart() {
+        presenter.presentPlayState()
     }
+    
+    func playDidPause() {
+        presenter.presentPauseState()
+    }
+
 }

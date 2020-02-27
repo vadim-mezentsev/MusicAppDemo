@@ -10,18 +10,18 @@ import Foundation
 
 class MemoryLibraryService: LibraryService {
     
-    private var observers = [LibraryServiceObserver]()
+    private(set) var notification = NotificationManager<LibraryServiceObserver>()
     private var tracks = [TrackContentModel]()
     
     func add(track: TrackContentModel) {
         guard !tracks.contains(track) else { return }
         tracks.append(track)
-        notify(event: .trackDidAdd(track))
+        notification.notify { $0.trackDidAddToLibrary(track) }
     }
     
     func remove(track: TrackContentModel) {
         tracks = tracks.filter { $0 == track }
-        notify(event: .trackDidRemove(track))
+        notification.notify { $0.trackDidRemoveFromLibrary(track) }
     }
     
     func fetchTracks(completion: @escaping ([TrackContentModel]) -> Void) {
@@ -33,15 +33,10 @@ class MemoryLibraryService: LibraryService {
     }
     
     func addObserver(_ observer: LibraryServiceObserver) {
-        observers.append(observer)
-    }
+        notification.addObserver(observer)    }
 
     func removeObserver(_ observer: LibraryServiceObserver) {
-        observers = observers.filter { $0 !== observer}
-    }
-    
-    func notify(event: LibraryServiceEvent) {
-        observers.forEach { $0.eventHandler(event: event) }
+        notification.removeObserver(observer)
     }
     
 }
