@@ -19,13 +19,6 @@ protocol PlayerService: class {
     func removeObserver(_ observer: PlayerServiceObserver)
 }
 
-enum PlayerServiceEvent {
-    case playDidStart
-    case playDidPause
-    case playDidEnd
-    case currentPlayTimeDidChange(currentTime: Float64, totalDuration: Float64)
-}
-
 protocol PlayerServiceObserver: class {
     func playDidStart()
     func playDidPause()
@@ -40,4 +33,3 @@ extension PlayerServiceObserver {
     func currentPlayTimeDidChange(_ currentTime: Float64, _ totalDuration: Float64) {}
 
 }
-
