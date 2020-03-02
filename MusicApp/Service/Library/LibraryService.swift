@@ -11,7 +11,7 @@ import Foundation
 protocol LibraryService: class {
     func add(track: TrackContentModel)
     func remove(track: TrackContentModel)
-    func fetchTracks(completion: @escaping ([TrackContentModel]) -> Void)
+    func fetchTracks(completion: @escaping (Result<[TrackContentModel], Error>) -> Void)
     func isTrackInLibrary(track: TrackContentModel) -> Bool
     func addObserver(_ observer: LibraryServiceObserver)
     func removeObserver(_ observer: LibraryServiceObserver)

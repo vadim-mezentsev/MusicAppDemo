@@ -24,8 +24,8 @@ class MemoryLibraryService: LibraryService {
         notification.notify { $0.trackDidRemoveFromLibrary(track) }
     }
     
-    func fetchTracks(completion: @escaping ([TrackContentModel]) -> Void) {
-        completion(tracks)
+    func fetchTracks(completion: @escaping (Result<[TrackContentModel], Error>) -> Void) {
+        completion(.success(tracks))
     }
     
     func isTrackInLibrary(track: TrackContentModel) -> Bool {

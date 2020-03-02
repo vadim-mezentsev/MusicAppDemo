@@ -52,6 +52,11 @@
 		CEEA02122406FAA40093BEAF /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02112406FAA40093BEAF /* PlayListViewController.swift */; };
 		CEEA0214240799AF0093BEAF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA0213240799AF0093BEAF /* Notification.swift */; };
 		CEEA02182407E5910093BEAF /* AVPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02172407E5910093BEAF /* AVPlayerService.swift */; };
+		CEEA021F240960F00093BEAF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA021E240960F00093BEAF /* CoreDataStack.swift */; };
+		CEEA02212409614C0093BEAF /* CoreDataLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02202409614C0093BEAF /* CoreDataLibraryService.swift */; };
+		CEEA02242409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEEA02222409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld */; };
+		CEEA0228240965090093BEAF /* TrackManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA0226240965090093BEAF /* TrackManagedObject+CoreDataClass.swift */; };
+		CEEA0229240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA0227240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +109,11 @@
 		CEEA02112406FAA40093BEAF /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
 		CEEA0213240799AF0093BEAF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		CEEA02172407E5910093BEAF /* AVPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerService.swift; sourceTree = "<group>"; };
+		CEEA021E240960F00093BEAF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CEEA02202409614C0093BEAF /* CoreDataLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLibraryService.swift; sourceTree = "<group>"; };
+		CEEA02232409637D0093BEAF /* CoreDataLibraryService.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataLibraryService.xcdatamodel; sourceTree = "<group>"; };
+		CEEA0226240965090093BEAF /* TrackManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEEA0227240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,8 +179,10 @@
 		CE42C9B1240545BD00DF5A99 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				CEEA0225240964ED0093BEAF /* Model */,
 				CE42C9B2240545E000DF5A99 /* LibraryService.swift */,
 				CE42C9B4240651D900DF5A99 /* MemoryLibraryService.swift */,
+				CEEA02202409614C0093BEAF /* CoreDataLibraryService.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -272,6 +284,7 @@
 				CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */,
 				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
 				CEEA0213240799AF0093BEAF /* Notification.swift */,
+				CEEA021E240960F00093BEAF /* CoreDataStack.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -320,6 +333,16 @@
 				CEEA02112406FAA40093BEAF /* PlayListViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CEEA0225240964ED0093BEAF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEEA0226240965090093BEAF /* TrackManagedObject+CoreDataClass.swift */,
+				CEEA0227240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift */,
+				CEEA02222409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +448,11 @@
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
 				CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */,
+				CEEA02242409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld in Sources */,
+				CEEA0228240965090093BEAF /* TrackManagedObject+CoreDataClass.swift in Sources */,
 				CE42C9B5240651D900DF5A99 /* MemoryLibraryService.swift in Sources */,
+				CEEA0229240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift in Sources */,
+				CEEA02212409614C0093BEAF /* CoreDataLibraryService.swift in Sources */,
 				CE42C9B3240545E000DF5A99 /* LibraryService.swift in Sources */,
 				CE3A3B8423CF71FF00A3AC06 /* IdentifiableCellProtocol.swift in Sources */,
 				CE3A3B7D23CF334C00A3AC06 /* ApiResponse.swift in Sources */,
@@ -434,6 +461,7 @@
 				CEEA0214240799AF0093BEAF /* Notification.swift in Sources */,
 				CE515F5323FD3ACC00F436AC /* MiniPlayerInteractor.swift in Sources */,
 				CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */,
+				CEEA021F240960F00093BEAF /* CoreDataStack.swift in Sources */,
 				CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
 				CEEA02122406FAA40093BEAF /* PlayListViewController.swift in Sources */,
@@ -659,6 +687,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CEEA02222409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEEA02232409637D0093BEAF /* CoreDataLibraryService.xcdatamodel */,
+			);
+			currentVersion = CEEA02232409637D0093BEAF /* CoreDataLibraryService.xcdatamodel */;
+			path = CoreDataLibraryService.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE7AB70A23CDD93E00CF9EF8 /* Project object */;
 }

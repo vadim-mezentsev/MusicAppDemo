@@ -31,7 +31,7 @@ class MainCoordinator: Coordinator {
     var miniPlayerViewController: MiniPlayerViewController!
     
     var player: PlayerService = AVPlayerService()
-    var library: LibraryService = MemoryLibraryService()
+    var library: LibraryService = CoreDataLibraryService()
     var playSource: PlaySource?
     
     // MARK: - Init

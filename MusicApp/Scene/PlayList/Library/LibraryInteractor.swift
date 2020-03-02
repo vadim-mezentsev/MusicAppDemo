@@ -47,11 +47,16 @@ class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
     // MARK: - SearchInteractorLogic
     
     func fetchTracks() {
-        libraryService.fetchTracks { [weak self] (models) in
-            self?.tracks = models
-            self?.currentTrackIndex = nil
-            let tracks: [(TrackContentModel, Bool)] = models.map { ($0, true) }
-            self?.presenter.presentTracks(tracks)
+        libraryService.fetchTracks { [weak self] (result) in
+            switch result {
+            case .success(let models):
+                self?.tracks = models
+                self?.currentTrackIndex = nil
+                let tracks: [(TrackContentModel, Bool)] = models.map { ($0, true) }
+                self?.presenter.presentTracks(tracks)
+            case .failure(let error):
+                self?.presenter.presentError(error.localizedDescription)
+            }
         }
     }
     
