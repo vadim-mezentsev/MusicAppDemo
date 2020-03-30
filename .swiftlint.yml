@@ -1,6 +1,29 @@
-line_length:
-- 200 # warning
-- 300 # error
 disabled_rules:
-- trailing_whitespace
-- force_cast
+    - trailing_whitespace
+    - force_cast
+    - force_try
+    - todo
+opt_in_rules:
+    - private_outlet
+    - private_action
+    - override_in_extension
+    - overridden_super_call
+    - prohibited_super_call
+    - closure_end_indentation
+    - closure_spacing
+    - collection_alignment
+    - modifier_order
+    - multiline_arguments
+    - multiline_function_chains
+    - multiline_parameters
+    - operator_usage_whitespace
+    - pattern_matching_keywords
+    - unowned_variable_capture
+    - unused_import
+line_length:
+    - 200 # warning
+    - 300 # error
+identifier_name:
+    min_length: 2
+private_outlet:
+    allow_private_set: true

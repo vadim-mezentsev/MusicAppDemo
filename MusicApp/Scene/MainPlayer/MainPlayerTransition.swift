@@ -114,7 +114,7 @@ class MainPlayerTransition: NSObject, UIViewControllerAnimatedTransitioning {
         cloneImageView.image = imageView.image?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 100))
         cloneImageView.backgroundColor = imageView.backgroundColor
         cloneImageView.tintColor = imageView.tintColor
-        cloneImageView.layer.cornerRadius  = imageView.layer.cornerRadius
+        cloneImageView.layer.cornerRadius = imageView.layer.cornerRadius
         cloneImageView.contentMode = imageView.contentMode
         cloneImageView.clipsToBounds = true
         return cloneImageView

@@ -79,6 +79,7 @@ class TrackCell: UITableViewCell, IdentifiableCellFromNib {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         trackImageView.image = nil
     }
     
