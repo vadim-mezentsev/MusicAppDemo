@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE16903623E4817400C0DBEF /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16903523E4817400C0DBEF /* MainPlayerViewController.swift */; };
 		CE16903923E48D0900C0DBEF /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16903823E48D0900C0DBEF /* PlayerService.swift */; };
+		CE394F4E2432436000E2FDFA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE394F4C2432436000E2FDFA /* .swiftlint.yml */; };
+		CE394F4F2432436000E2FDFA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CE394F4D2432436000E2FDFA /* .gitignore */; };
 		CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */; };
 		CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */; };
 		CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		CE16903523E4817400C0DBEF /* MainPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
 		CE16903823E48D0900C0DBEF /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
+		CE394F4C2432436000E2FDFA /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		CE394F4D2432436000E2FDFA /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
@@ -134,6 +138,15 @@
 				CEEA02172407E5910093BEAF /* AVPlayerService.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		CE394F4B2432434600E2FDFA /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CE394F4D2432436000E2FDFA /* .gitignore */,
+				CE394F4C2432436000E2FDFA /* .swiftlint.yml */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		CE3A3B7323CF2E9F00A3AC06 /* Service */ = {
@@ -212,6 +225,7 @@
 			children = (
 				CE7AB71423CDD93E00CF9EF8 /* MusicApp */,
 				CE7AB71323CDD93E00CF9EF8 /* Products */,
+				CE394F4B2432434600E2FDFA /* Config */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,9 +419,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE394F4F2432436000E2FDFA /* .gitignore in Resources */,
 				CE515F5123FD398700F436AC /* MiniPlayerView.xib in Resources */,
 				CE7AB72223CDD93F00CF9EF8 /* LaunchScreen.storyboard in Resources */,
 				CE7AB73723CDF00900CF9EF8 /* Localizable.strings in Resources */,
+				CE394F4E2432436000E2FDFA /* .swiftlint.yml in Resources */,
 				CE8EECCC23D06DD00078745B /* MainPlayerView.xib in Resources */,
 				CE7AB71F23CDD93F00CF9EF8 /* Assets.xcassets in Resources */,
 				CE3A3B8823CF725900A3AC06 /* TrackCell.xib in Resources */,
