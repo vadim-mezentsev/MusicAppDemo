@@ -12,20 +12,20 @@ class PlayListView: UIView {
 
     // MARK: - Appereance
     
-    var tableViewRowHeight: CGFloat = 84
-    var tableViewBottomInset: CGFloat = 252
-    var defaultHintLabelText: String = ""
+    let tableViewRowHeight: CGFloat = 84
+    let tableViewBottomInset: CGFloat = 252
+    let defaultHintLabelText: String = ""
     
     // MARK: - Interface properties
 
-    lazy var searchController: UISearchController = {
+    private(set) lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchBar.placeholder = "SearchBarPlaceholder".localized()
         searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
     
-    lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TrackCell.nib, forCellReuseIdentifier: TrackCell.reuseId)
@@ -34,13 +34,13 @@ class PlayListView: UIView {
         return tableView
     }()
     
-    lazy var activityIndicator: UIActivityIndicatorView = {
+    private(set) lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
     
-    lazy var hintLabel: UILabel = {
+    private(set) lazy var hintLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0

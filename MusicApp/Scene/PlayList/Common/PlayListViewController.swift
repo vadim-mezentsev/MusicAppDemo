@@ -29,7 +29,7 @@ class PlayListViewController: UIViewController {
     
     // MARK: - Load view
     
-    var playListView = PlayListView()
+    private(set) var playListView = PlayListView()
     override func loadView() {
         view = playListView
     }

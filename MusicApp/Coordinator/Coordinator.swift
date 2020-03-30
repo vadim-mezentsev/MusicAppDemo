@@ -23,12 +23,12 @@ class MainCoordinator: Coordinator {
     
     // MARK: - Properties
 
-    var window: UIWindow!
-    var rootViewController: MainTabBarController!
-    var searchViewController: SearchViewController!
-    var libraryViewController: LibraryViewController!
-    var mainPlayerViewController: MainPlayerViewController!
-    var miniPlayerViewController: MiniPlayerViewController!
+    private var window: UIWindow
+    private var rootViewController: MainTabBarController!
+    private var searchViewController: SearchViewController!
+    private var libraryViewController: LibraryViewController!
+    private var mainPlayerViewController: MainPlayerViewController!
+    private var miniPlayerViewController: MiniPlayerViewController!
     
     var player: PlayerService = AVPlayerService()
     var library: LibraryService = CoreDataLibraryService()
@@ -44,8 +44,7 @@ class MainCoordinator: Coordinator {
         mainPlayerViewController = createMainPlayerViewController()
         miniPlayerViewController = createMiniPlayerViewController()
         
-        rootViewController = MainTabBarController()
-        rootViewController.miniPlayerController = miniPlayerViewController
+        rootViewController = MainTabBarController(miniPlayerController: miniPlayerViewController)
         rootViewController.viewControllers = [
             TabBarType.search.buildNavigationController(for: searchViewController),
             TabBarType.library.buildNavigationController(for: libraryViewController)

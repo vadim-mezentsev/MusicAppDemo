@@ -21,13 +21,13 @@ class LibraryViewController: PlayListViewController {
     
     // MARK: - View data
     
-    var cellViewModels: [TrackCellModel] = []
+    private var cellViewModels: [TrackCellModel] = []
     
     // MARK: - Properties
 
-    var input: LibraryInput!
-    var output: LibraryOutput!
-    var interactor: LibraryInteractorLogic!
+    private(set) var input: LibraryInput!
+    private(set) var output: LibraryOutput!
+    private var interactor: LibraryInteractorLogic!
     
     // MARK: - Init
     

@@ -27,10 +27,10 @@ class MainPlayerViewController: UIViewController {
     
     // MARK: - Properties
     
-    var input: MainPlayerInput!
-    var output: MainPlayerOutput!
-    var interactor: MainPlayerInteractorLogic!
-    var state: MainPlayerViewController.State! {
+    private(set) var input: MainPlayerInput!
+    private(set) var output: MainPlayerOutput!
+    private var interactor: MainPlayerInteractorLogic!
+    private var state: MainPlayerViewController.State! {
         didSet {
             changeState(to: state)
         }
@@ -71,27 +71,27 @@ class MainPlayerViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @IBAction func dragDownButtomTapped(_ sender: Any) {
+    @IBAction private func dragDownButtomTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func trackPositionSliderChanged(_ sender: Any) {
+    @IBAction private func trackPositionSliderChanged(_ sender: Any) {
         interactor.seek(to: mainPlayerView.currentTimeSlider.value)
     }
     
-    @IBAction func volumeSliderChanged(_ sender: Any) {
+    @IBAction private func volumeSliderChanged(_ sender: Any) {
         interactor.setVolume(to: mainPlayerView.volumeSlider.value)
     }
     
-    @IBAction func nextTrackButtonTapped(_ sender: Any) {
+    @IBAction private func nextTrackButtonTapped(_ sender: Any) {
         interactor.playNextTrack()
     }
     
-    @IBAction func previousTrackButtonTapped(_ sender: Any) {
+    @IBAction private func previousTrackButtonTapped(_ sender: Any) {
         interactor.playPreviousTrack()
     }
     
-    @IBAction func playPouseButtonTapped(_ sender: Any) {
+    @IBAction private func playPouseButtonTapped(_ sender: Any) {
         interactor.playerStatusToggle()
     }
     

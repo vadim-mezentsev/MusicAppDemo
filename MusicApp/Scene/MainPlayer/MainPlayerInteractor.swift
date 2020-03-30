@@ -30,8 +30,8 @@ class MainPlayerInteractor: MainPlayerInteractorLogic, MainPlayerInput, MainPlay
     
     // MARK: - Properties
     
-    var presenter: MainPlayerPresenterLogic!
-    weak var player: PlayerService?
+    private var presenter: MainPlayerPresenterLogic!
+    private weak var player: PlayerService?
     
     // MARK: - Init
     

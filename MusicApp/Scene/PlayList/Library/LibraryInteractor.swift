@@ -29,11 +29,11 @@ class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
 
     // MARK: - Properties
     
-    var presenter: LibraryPresenterLogic!
-    var operationQueue: DispatchQueue!
-    var libraryService: LibraryService!
-    private(set) var tracks: [TrackContentModel]?
-    private(set) var currentTrackIndex: Int?
+    private var presenter: LibraryPresenterLogic!
+    private var operationQueue: DispatchQueue!
+    private var libraryService: LibraryService!
+    private var tracks: [TrackContentModel]?
+    private var currentTrackIndex: Int?
 
     // MARK: - Init
     

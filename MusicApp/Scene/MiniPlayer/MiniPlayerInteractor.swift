@@ -28,8 +28,8 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     
     // MARK: - Properties
     
-    var presenter: MiniPlayerPresenterLogic!
-    weak var player: PlayerService?
+    private var presenter: MiniPlayerPresenterLogic!
+    private weak var player: PlayerService?
     
     // MARK: - Init
     

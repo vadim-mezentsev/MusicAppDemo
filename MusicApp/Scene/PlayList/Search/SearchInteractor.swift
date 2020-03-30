@@ -30,12 +30,12 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
 
     // MARK: - Properties
     
-    var presenter: SearchPresenterLogic!
-    var operationQueue: DispatchQueue!
-    var networkService: NetworkService!
-    var libraryService: LibraryService!
-    private(set) var tracks: [TrackContentModel]?
-    private(set) var currentTrackIndex: Int?
+    private var presenter: SearchPresenterLogic!
+    private var operationQueue: DispatchQueue!
+    private var networkService: NetworkService!
+    private var libraryService: LibraryService!
+    private var tracks: [TrackContentModel]?
+    private var currentTrackIndex: Int?
 
     // MARK: - Init
     

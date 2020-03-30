@@ -27,10 +27,10 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: - Properties
     
-    var input: MiniPlayerInput!
-    var output: MiniPlayerOutput!
-    var interactor: MiniPlayerInteractorLogic!
-    var state: MiniPlayerViewController.State! {
+    private(set) var input: MiniPlayerInput!
+    private(set) var output: MiniPlayerOutput!
+    private var interactor: MiniPlayerInteractorLogic!
+    private var state: MiniPlayerViewController.State! {
         didSet {
             changeState(to: state)
         }
@@ -72,7 +72,7 @@ class MiniPlayerViewController: UIViewController {
 
     // MARK: - IBAction
     
-    @IBAction func playPouseButtonTapped(_ sender: Any) {
+    @IBAction private func playPouseButtonTapped(_ sender: Any) {
         if state == .play {
             state = .pause
         } else {
@@ -81,11 +81,11 @@ class MiniPlayerViewController: UIViewController {
         interactor.playerStatusToggle()
     }
     
-    @IBAction func nextTrackButtonTapped(_ sender: Any) {
+    @IBAction private func nextTrackButtonTapped(_ sender: Any) {
         interactor.playNextTrack()
     }
     
-    @IBAction func viewTapped(_ sender: Any) {
+    @IBAction private func viewTapped(_ sender: Any) {
         interactor.showMainPlayer()
     }
     

@@ -20,13 +20,13 @@ class SearchViewController: PlayListViewController {
     
     // MARK: - View data
     
-    var cellViewModels: [TrackCellModel] = []
+    private var cellViewModels: [TrackCellModel] = []
     
     // MARK: - Properties
 
-    var input: SearchInput!
-    var output: SearchOutput!
-    var interactor: SearchInteractorLogic!
+    private(set) var input: SearchInput!
+    private(set) var output: SearchOutput!
+    private var interactor: SearchInteractorLogic!
     private var timer: Timer?
 
     // MARK: - Init

@@ -10,18 +10,31 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    private let miniPlayerViewHeightMultiplayer: CGFloat = 1.4
+    // MARK: - Properties
     
-    var miniPlayerController: MiniPlayerViewController! {
-        didSet {
-            setupMiniPlayer()
-        }
+    private let miniPlayerViewHeightMultiplayer: CGFloat = 1.4
+    private let miniPlayerController: MiniPlayerViewController
+    
+    // MARK: - Init
+    
+    init(miniPlayerController: MiniPlayerViewController) {
+        self.miniPlayerController = miniPlayerController
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
+        setupMiniPlayer()
     }
+    
+    // MARK: - Interface preparation
     
     private func setupTabBar() {
         tabBar.tintColor = .systemPink

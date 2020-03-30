@@ -17,19 +17,19 @@ class MiniPlayerView: UIView {
     
     // MARK: - Interface properties
     
-    @IBOutlet weak var trackImageView: WebImageView!
-    @IBOutlet weak var trackTitleLabel: UILabel!
-    @IBOutlet weak var playPouseButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private(set) weak var trackImageView: WebImageView!
+    @IBOutlet private(set) weak var trackTitleLabel: UILabel!
+    @IBOutlet private(set) weak var playPouseButton: UIButton!
+    @IBOutlet private(set) weak var nextButton: UIButton!
     
-    let blurView: UIVisualEffectView = {
+    private(set) lazy var blurView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         return blurView
     }()
     
-    let separatorView: UIView = {
+    private(set) lazy var separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         view.translatesAutoresizingMaskIntoConstraints = false

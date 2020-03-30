@@ -20,14 +20,14 @@ class MainPlayerView: UIView {
     
     // MARK: - Interface properties
     
-    @IBOutlet weak var trackImageView: WebImageView!
-    @IBOutlet weak var currentTimeSlider: UISlider!
-    @IBOutlet weak var currentTimeLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var trackTitleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var playPouseButton: UIButton!
-    @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet private(set) weak var trackImageView: WebImageView!
+    @IBOutlet private(set) weak var currentTimeSlider: UISlider!
+    @IBOutlet private(set) weak var currentTimeLabel: UILabel!
+    @IBOutlet private(set) weak var durationLabel: UILabel!
+    @IBOutlet private(set) weak var trackTitleLabel: UILabel!
+    @IBOutlet private(set) weak var authorLabel: UILabel!
+    @IBOutlet private(set) weak var playPouseButton: UIButton!
+    @IBOutlet private(set) weak var volumeSlider: UISlider!
     
     // MARK: - Life cicle
     

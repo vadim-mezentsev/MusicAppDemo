@@ -28,11 +28,11 @@ class TrackCell: UITableViewCell, IdentifiableCellFromNib {
 
     // MARK: - Interface properties
     
-    @IBOutlet weak var trackImageView: WebImageView!
-    @IBOutlet weak var trackTitleLabel: UILabel!
-    @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var collectionLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private(set) weak var trackImageView: WebImageView!
+    @IBOutlet private(set) weak var trackTitleLabel: UILabel!
+    @IBOutlet private(set) weak var artistLabel: UILabel!
+    @IBOutlet private(set) weak var collectionLabel: UILabel!
+    @IBOutlet private(set) weak var addButton: UIButton!
 
     // MARK: - Init
     
@@ -52,7 +52,7 @@ class TrackCell: UITableViewCell, IdentifiableCellFromNib {
     
     // MARK: - IBAction
     
-    @IBAction func addButtomTapped(_ sender: Any) {
+    @IBAction private func addButtomTapped(_ sender: Any) {
         guard
             let tableView = superview as? UITableView,
             let indexPath = tableView.indexPath(for: self)
