@@ -35,7 +35,7 @@ class MainPlayerView: UIView {
         super.awakeFromNib()
         trackImageView.transform = trackImageViewScaleDownTransform
         trackImageView.layer.cornerRadius = trackImageViewCornerRadius
-        trackImageView.backgroundColor = .systemGray2
+        trackImageView.backgroundColor = Assets.Color.gray2
     }
     
     // MARK: - Animation

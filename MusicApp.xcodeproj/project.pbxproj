@@ -16,6 +16,7 @@
 		CE394F622432847700E2FDFA /* MainPlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F612432847700E2FDFA /* MainPlayerBuilder.swift */; };
 		CE394F64243285C200E2FDFA /* MiniPlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F63243285C200E2FDFA /* MiniPlayerBuilder.swift */; };
 		CE394F7D243352B900E2FDFA /* TrackCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F7C243352B900E2FDFA /* TrackCellModel.swift */; };
+		CE394F7F2433554D00E2FDFA /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F7E2433554D00E2FDFA /* Assets.swift */; };
 		CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */; };
 		CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */; };
 		CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */; };
@@ -76,6 +77,7 @@
 		CE394F612432847700E2FDFA /* MainPlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerBuilder.swift; sourceTree = "<group>"; };
 		CE394F63243285C200E2FDFA /* MiniPlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerBuilder.swift; sourceTree = "<group>"; };
 		CE394F7C243352B900E2FDFA /* TrackCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellModel.swift; sourceTree = "<group>"; };
+		CE394F7E2433554D00E2FDFA /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
 				CEEA0213240799AF0093BEAF /* Notification.swift */,
 				CEEA021E240960F00093BEAF /* CoreDataStack.swift */,
+				CE394F7E2433554D00E2FDFA /* Assets.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
 				CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */,
 				CEEA02242409637D0093BEAF /* CoreDataLibraryService.xcdatamodeld in Sources */,
+				CE394F7F2433554D00E2FDFA /* Assets.swift in Sources */,
 				CEEA0228240965090093BEAF /* TrackManagedObject+CoreDataClass.swift in Sources */,
 				CE42C9B5240651D900DF5A99 /* MemoryLibraryService.swift in Sources */,
 				CEEA0229240965090093BEAF /* TrackManagedObject+CoreDataProperties.swift in Sources */,

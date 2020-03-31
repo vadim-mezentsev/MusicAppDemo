@@ -69,7 +69,7 @@ class PlayListView: UIView {
     // MARK: - Setup view
     
     private func setupView() {
-        backgroundColor = .systemBackground
+        backgroundColor = Assets.Color.background
         setupTableView()
         setupActivityIndicator()
         setupHintLabel()

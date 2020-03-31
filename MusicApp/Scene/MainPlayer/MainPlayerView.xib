@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +26,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="a5I-vJ-MRn"/>
                             </constraints>
-                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="gray"/>
                             <state key="normal" image="minus" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50" scale="large" weight="medium"/>
                             </state>
@@ -35,7 +36,7 @@
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Note" translatesAutoresizingMaskIntoConstraints="NO" id="yaq-vi-lpB" customClass="WebImageView" customModule="MusicApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="315" height="315"/>
-                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="gray"/>
                             <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="yaq-vi-lpB" secondAttribute="height" multiplier="1:1" id="27g-oD-YBw"/>
@@ -47,13 +48,13 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-yR-P6h">
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="28.666666666666668"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="label"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-e0-xp7">
                                     <rect key="frame" x="0.0" y="28.666666666666686" width="315" height="28.666666666666671"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
-                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="pink"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -73,13 +74,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmN-Qd-W1E">
                                             <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" name="gray"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snA-WF-qjR">
                                             <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" name="gray"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -91,7 +92,7 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qox-ui-msc">
                                     <rect key="frame" x="0.0" y="36" width="105" height="28"/>
-                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" name="label"/>
                                     <state key="normal" image="backward.fill" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                     </state>
@@ -101,7 +102,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCu-4o-Tvi">
                                     <rect key="frame" x="105" y="26.666666666666625" width="105" height="46.666666666666657"/>
-                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" name="label"/>
                                     <state key="normal" image="pause.fill" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
                                     </state>
@@ -111,7 +112,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F80-cE-VS1">
                                     <rect key="frame" x="210" y="36" width="105" height="28"/>
-                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" name="label"/>
                                     <state key="normal" image="forward.fill" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                     </state>
@@ -126,7 +127,7 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-aQ-R87">
                                     <rect key="frame" x="0.0" y="1.6666666666666643" width="0.0" height="27.000000000000004"/>
-                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" name="label"/>
                                 </imageView>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YEE-fA-g0w">
                                     <rect key="frame" x="8" y="0.0" width="299" height="31"/>
@@ -136,14 +137,14 @@
                                 </slider>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ib4-Bq-Omw">
                                     <rect key="frame" x="315" y="0.66666666666666607" width="0.0" height="28.666666666666671"/>
-                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" name="label"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" name="background"/>
             <constraints>
                 <constraint firstItem="soG-Kz-v5G" firstAttribute="leading" secondItem="rOr-KL-zeH" secondAttribute="leading" constant="30" id="8hy-Hi-tp5"/>
                 <constraint firstItem="rOr-KL-zeH" firstAttribute="bottom" secondItem="soG-Kz-v5G" secondAttribute="bottom" constant="30" id="Deq-Kg-Dmp"/>
@@ -172,5 +173,17 @@
         <image name="pause.fill" catalog="system" width="58" height="64"/>
         <image name="speaker.3.fill" catalog="system" width="64" height="44"/>
         <image name="speaker.fill" catalog="system" width="64" height="60"/>
+        <namedColor name="background">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="gray">
+            <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="label">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="pink">
+            <color red="1" green="0.17599999904632568" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

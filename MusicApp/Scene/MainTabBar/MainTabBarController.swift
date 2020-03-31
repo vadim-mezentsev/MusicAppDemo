@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
     // MARK: - Interface preparation
     
     private func setupTabBar() {
-        tabBar.tintColor = .systemPink
+        tabBar.tintColor = Assets.Color.pink
         tabBar.backgroundColor = .clear
     }
     

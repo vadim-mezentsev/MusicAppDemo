@@ -31,7 +31,7 @@ class MiniPlayerView: UIView {
     
     private(set) lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = Assets.Color.gray4
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -83,7 +83,7 @@ class MiniPlayerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         trackImageView.layer.cornerRadius = trackImageViewCornerRadius
-        trackImageView.backgroundColor = .systemGray2
+        trackImageView.backgroundColor = Assets.Color.gray2
     }
     
     // MARK: - Animation
