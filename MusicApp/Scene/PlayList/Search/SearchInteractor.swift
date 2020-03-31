@@ -67,7 +67,7 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
                     self?.presenter.presentTracks(tracks)
                 }
             case .failure(let error):
-                self?.presenter.presentError(error.message)
+                self?.presenter.presentError(error.localizedDescription)
             }
         }
     }

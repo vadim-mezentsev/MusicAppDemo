@@ -41,11 +41,11 @@ class NetworkService {
                 if let model = self?.decodeJSON(modelType, from: data) {
                     completion(.success(model))
                 } else {
-                    let parsingError = NetworkError(message: "Error parsing JSON.".localized(), type: .invalidJSON)
+                    let parsingError = NetworkError.invalidJSON
                     completion(.failure(parsingError))
                 }
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
                 completion(.failure(error))
             }
 
@@ -68,13 +68,13 @@ class NetworkService {
         let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             guard error == nil else {
-                let requestError = NetworkError(message: error!.localizedDescription, type: .invalidRequest)
+                let requestError = NetworkError.invalidRequest(initialError: error!)
                 completion(.failure(requestError))
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200, let data = data else {
-                let requestError = NetworkError(message: "Invalid response format.".localized(), type: .invalidResponse)
+                let requestError = NetworkError.invalidResponse
                 completion(.failure(requestError))
                 return
             }
