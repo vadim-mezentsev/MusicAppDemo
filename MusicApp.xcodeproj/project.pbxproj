@@ -161,6 +161,27 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		CE394F8024336CBB00E2FDFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE394F7E2433554D00E2FDFA /* Assets.swift */,
+				CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */,
+				CE7AB73923CDF00900CF9EF8 /* Localizable.strings */,
+				CE7AB72023CDD93F00CF9EF8 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE394F8124336D0200E2FDFA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */,
+				CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */,
+				CE8EECC823D06B000078745B /* UITableView + extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CE3A3B7323CF2E9F00A3AC06 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +280,7 @@
 				CE515F4423FAF18C00F436AC /* Coordinator */,
 				CE7AB72E23CDEE9E00CF9EF8 /* Scene */,
 				CE7AB73B23CDF09200CF9EF8 /* Common */,
+				CE394F8024336CBB00E2FDFA /* Resources */,
 			);
 			path = MusicApp;
 			sourceTree = "<group>";
@@ -308,14 +330,11 @@
 		CE7AB73B23CDF09200CF9EF8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CE7AB73C23CDF0A500CF9EF8 /* String + extension.swift */,
-				CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */,
-				CE8EECC823D06B000078745B /* UITableView + extension.swift */,
+				CE394F8124336D0200E2FDFA /* Extension */,
 				CE3A3B8323CF71FF00A3AC06 /* IdentifiableCellProtocol.swift */,
 				CE3A3B8923CF7E9400A3AC06 /* WebImageView.swift */,
 				CEEA0213240799AF0093BEAF /* Notification.swift */,
 				CEEA021E240960F00093BEAF /* CoreDataStack.swift */,
-				CE394F7E2433554D00E2FDFA /* Assets.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -325,9 +344,6 @@
 			children = (
 				CE7AB71523CDD93E00CF9EF8 /* AppDelegate.swift */,
 				CE7AB71723CDD93E00CF9EF8 /* SceneDelegate.swift */,
-				CE7AB71E23CDD93F00CF9EF8 /* Assets.xcassets */,
-				CE7AB72023CDD93F00CF9EF8 /* LaunchScreen.storyboard */,
-				CE7AB73923CDF00900CF9EF8 /* Localizable.strings */,
 				CE7AB72323CDD93F00CF9EF8 /* Info.plist */,
 			);
 			path = Application;
