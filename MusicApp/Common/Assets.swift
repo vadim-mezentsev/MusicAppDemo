@@ -23,6 +23,10 @@ enum Assets {
     
     enum Image {
         static var noImage: UIImage { UIImage(named: "Note")! }
+        static var magnifyingGlass: UIImage { UIImage(systemName: "magnifyingglass")! }
+        static var musicNoteList: UIImage { UIImage(systemName: "music.note.list")! }
+        static var pauseFill: UIImage { UIImage(systemName: "pause.fill")! }
+        static var playFill: UIImage { UIImage(systemName: "play.fill")! }
     }
     
 }

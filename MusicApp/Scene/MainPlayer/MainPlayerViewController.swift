@@ -93,14 +93,14 @@ class MainPlayerViewController: UIViewController {
         switch state {
         case .wait:
             mainPlayerView.scaleDownTrackImageView()
-            let image = UIImage(systemName: "pause.fill")
+            let image = Assets.Image.pauseFill
             mainPlayerView.playPouseButton.setImage(image, for: .normal)
         case .play:
-            let image = UIImage(systemName: "pause.fill")
+            let image = Assets.Image.pauseFill
             mainPlayerView.playPouseButton.setImage(image, for: .normal)
             mainPlayerView.scaleUpTrackImageView()
         case .pause:
-            let image = UIImage(systemName: "play.fill")
+            let image = Assets.Image.playFill
             mainPlayerView.playPouseButton.setImage(image, for: .normal)
             mainPlayerView.scaleDownTrackImageView()
         }

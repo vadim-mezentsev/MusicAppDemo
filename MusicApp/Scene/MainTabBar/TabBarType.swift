@@ -23,8 +23,8 @@ enum TabBarType: CaseIterable {
     
     var image: UIImage? {
         switch self {
-        case .search: return UIImage(systemName: "magnifyingglass")
-        case .library: return UIImage(systemName: "music.note.list")
+        case .search: return Assets.Image.magnifyingGlass
+        case .library: return Assets.Image.musicNoteList
         }
     }
     

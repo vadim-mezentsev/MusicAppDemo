@@ -94,12 +94,12 @@ class MiniPlayerViewController: UIViewController {
             miniPlayerView.playPouseButton.isEnabled = false
             miniPlayerView.nextButton.isEnabled = false
         case .play:
-            let image = UIImage(systemName: "pause.fill")
+            let image = Assets.Image.pauseFill
             miniPlayerView.playPouseButton.setImage(image, for: .normal)
             miniPlayerView.playPouseButton.isEnabled = true
             miniPlayerView.nextButton.isEnabled = true
         case .pause:
-            let image = UIImage(systemName: "play.fill")
+            let image = Assets.Image.playFill
             miniPlayerView.playPouseButton.setImage(image, for: .normal)
             miniPlayerView.playPouseButton.isEnabled = true
             miniPlayerView.nextButton.isEnabled = true
