@@ -8,14 +8,6 @@
 
 import UIKit
 
-struct TrackCellModel {
-    let imageUrl: URL?
-    let trackTitle: String
-    let artist: String
-    let collection: String
-    let isAddedToLibrary: Bool
-}
-
 protocol TrackCellDelegate: class {
     func addButtomTapped(at indexPath: IndexPath)
 }
