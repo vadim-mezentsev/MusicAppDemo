@@ -30,10 +30,10 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
 
     // MARK: - Properties
     
-    private var presenter: SearchPresenterLogic!
-    private var operationQueue: DispatchQueue!
-    private var networkService: NetworkService!
-    private var libraryService: LibraryService!
+    private let presenter: SearchPresenterLogic
+    private let operationQueue: DispatchQueue
+    private let networkService: NetworkService
+    private let libraryService: LibraryService
     private var tracks: [TrackContentModel]?
     private var currentTrackIndex: Int?
 
@@ -41,10 +41,10 @@ class SearchInteractor: SearchInteractorLogic, SearchInput, SearchOutput {
     
     init(presenter: SearchPresenterLogic, libraryService: LibraryService) {
         self.presenter = presenter
-        self.libraryService = libraryService
-        self.libraryService.addObserver(self)
         self.operationQueue = DispatchQueue(label: "SearchOperationQueue", qos: .userInitiated)
         self.networkService = NetworkService(completionQueue: operationQueue)
+        self.libraryService = libraryService
+        self.libraryService.addObserver(self)
     }
   
     // MARK: - SearchInteractorLogic

@@ -23,7 +23,7 @@ class MainPlayerPresenter: MainPlayerPresenterLogic {
 
     // MARK: - Init
     
-    init(viewController: MainPlayerDisplayLogic) {
+    init(viewController: MainPlayerDisplayLogic? = nil) {
         self.viewController = viewController
     }
 

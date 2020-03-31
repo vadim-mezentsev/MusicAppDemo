@@ -25,15 +25,17 @@ class LibraryViewController: PlayListViewController {
     
     // MARK: - Properties
 
-    private(set) var input: LibraryInput!
-    private(set) var output: LibraryOutput!
-    private var interactor: LibraryInteractorLogic!
+    let input: LibraryInput
+    let output: LibraryOutput
+    private let interactor: LibraryInteractorLogic
     
     // MARK: - Init
     
-    init(libraryService: LibraryService) {
+    init(interactor: LibraryInteractorLogic, input: LibraryInput, output: LibraryOutput) {
+        self.interactor = interactor
+        self.input = input
+        self.output = output
         super.init(nibName: nil, bundle: nil)
-        setupScene(libraryService: libraryService)
     }
     
     required init?(coder: NSCoder) {
@@ -44,16 +46,6 @@ class LibraryViewController: PlayListViewController {
     
     deinit {
         interactor.prepareForRemove()
-    }
-    
-    // MARK: Setup scene
-    
-    private func setupScene(libraryService: LibraryService) {
-        let presenter = LibraryPresenter(viewController: self)
-        let interactor = LibraryInteractor(presenter: presenter, libraryService: libraryService)
-        self.interactor = interactor
-        self.input = interactor
-        self.output = interactor
     }
 
     // MARK: - View lifecycle

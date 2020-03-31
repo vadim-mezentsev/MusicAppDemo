@@ -29,9 +29,9 @@ class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
 
     // MARK: - Properties
     
-    private var presenter: LibraryPresenterLogic!
-    private var operationQueue: DispatchQueue!
-    private var libraryService: LibraryService!
+    private let presenter: LibraryPresenterLogic
+    private let operationQueue: DispatchQueue
+    private let libraryService: LibraryService
     private var tracks: [TrackContentModel]?
     private var currentTrackIndex: Int?
 
@@ -39,9 +39,9 @@ class LibraryInteractor: LibraryInteractorLogic, LibraryInput, LibraryOutput {
     
     init(presenter: LibraryPresenterLogic, libraryService: LibraryService) {
         self.presenter = presenter
+        self.operationQueue = DispatchQueue(label: "LibraryOperationQueue", qos: .userInitiated)
         self.libraryService = libraryService
         self.libraryService.addObserver(self)
-        self.operationQueue = DispatchQueue(label: "LibraryOperationQueue", qos: .userInitiated)
     }
   
     // MARK: - SearchInteractorLogic

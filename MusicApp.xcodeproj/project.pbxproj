@@ -11,6 +11,10 @@
 		CE16903923E48D0900C0DBEF /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16903823E48D0900C0DBEF /* PlayerService.swift */; };
 		CE394F4E2432436000E2FDFA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE394F4C2432436000E2FDFA /* .swiftlint.yml */; };
 		CE394F4F2432436000E2FDFA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CE394F4D2432436000E2FDFA /* .gitignore */; };
+		CE394F512432777400E2FDFA /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F502432777400E2FDFA /* SearchBuilder.swift */; };
+		CE394F6024327FB000E2FDFA /* LibraryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F5F24327FB000E2FDFA /* LibraryBuilder.swift */; };
+		CE394F622432847700E2FDFA /* MainPlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F612432847700E2FDFA /* MainPlayerBuilder.swift */; };
+		CE394F64243285C200E2FDFA /* MiniPlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394F63243285C200E2FDFA /* MiniPlayerBuilder.swift */; };
 		CE3A3B6E23CF201B00A3AC06 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */; };
 		CE3A3B7023CF202B00A3AC06 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */; };
 		CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */; };
@@ -66,6 +70,10 @@
 		CE16903823E48D0900C0DBEF /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		CE394F4C2432436000E2FDFA /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		CE394F4D2432436000E2FDFA /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		CE394F502432777400E2FDFA /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
+		CE394F5F24327FB000E2FDFA /* LibraryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBuilder.swift; sourceTree = "<group>"; };
+		CE394F612432847700E2FDFA /* MainPlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerBuilder.swift; sourceTree = "<group>"; };
+		CE394F63243285C200E2FDFA /* MiniPlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerBuilder.swift; sourceTree = "<group>"; };
 		CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		CE3A3B7123CF2B1600A3AC06 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 		CE515F4723FD314D00F436AC /* MiniPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				CE394F63243285C200E2FDFA /* MiniPlayerBuilder.swift */,
 				CE515F5023FD398700F436AC /* MiniPlayerView.xib */,
 				CE515F4E23FD397000F436AC /* MiniPlayerView.swift */,
 				CE515F4C23FD392900F436AC /* MiniPlayerViewController.swift */,
@@ -272,6 +281,7 @@
 		CE7AB73023CDEED900CF9EF8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				CE394F502432777400E2FDFA /* SearchBuilder.swift */,
 				CE7AB72C23CDDEFA00CF9EF8 /* SearchViewController.swift */,
 				CE3A3B6D23CF201B00A3AC06 /* SearchInteractor.swift */,
 				CE3A3B6F23CF202B00A3AC06 /* SearchPresenter.swift */,
@@ -282,6 +292,7 @@
 		CE7AB73123CDEEE300CF9EF8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				CE394F5F24327FB000E2FDFA /* LibraryBuilder.swift */,
 				CE7AB71923CDD93E00CF9EF8 /* LibraryViewController.swift */,
 				CE42C9B824065A7600DF5A99 /* LibraryInteractor.swift */,
 				CE42C9BA24065AAB00DF5A99 /* LibraryPresenter.swift */,
@@ -319,6 +330,7 @@
 		CE8EECCA23D06DA00078745B /* MainPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				CE394F612432847700E2FDFA /* MainPlayerBuilder.swift */,
 				CE8EECCB23D06DD00078745B /* MainPlayerView.xib */,
 				CE8EECCD23D06DF50078745B /* MainPlayerView.swift */,
 				CE16903523E4817400C0DBEF /* MainPlayerViewController.swift */,
@@ -461,6 +473,7 @@
 				CE515F4323F9B5F900F436AC /* MainPlayerPresenter.swift in Sources */,
 				CE7AB72D23CDDEFA00CF9EF8 /* SearchViewController.swift in Sources */,
 				CE16903623E4817400C0DBEF /* MainPlayerViewController.swift in Sources */,
+				CE394F64243285C200E2FDFA /* MiniPlayerBuilder.swift in Sources */,
 				CE7AB71A23CDD93E00CF9EF8 /* LibraryViewController.swift in Sources */,
 				CE7AB73D23CDF0A500CF9EF8 /* String + extension.swift in Sources */,
 				CE8EECCE23D06DF50078745B /* MainPlayerView.swift in Sources */,
@@ -477,11 +490,14 @@
 				CEEA0214240799AF0093BEAF /* Notification.swift in Sources */,
 				CE515F5323FD3ACC00F436AC /* MiniPlayerInteractor.swift in Sources */,
 				CE3A3B7223CF2B1600A3AC06 /* UIView + extension.swift in Sources */,
+				CE394F6024327FB000E2FDFA /* LibraryBuilder.swift in Sources */,
+				CE394F512432777400E2FDFA /* SearchBuilder.swift in Sources */,
 				CEEA021F240960F00093BEAF /* CoreDataStack.swift in Sources */,
 				CE3A3B7F23CF35AF00A3AC06 /* TracksResponce.swift in Sources */,
 				CE7AB71623CDD93E00CF9EF8 /* AppDelegate.swift in Sources */,
 				CEEA02122406FAA40093BEAF /* PlayListViewController.swift in Sources */,
 				CE3A3B7B23CF320500A3AC06 /* NetworkService.swift in Sources */,
+				CE394F622432847700E2FDFA /* MainPlayerBuilder.swift in Sources */,
 				CE515F5523FD3ADD00F436AC /* MiniPlayerPresenter.swift in Sources */,
 				CE42C9B924065A7600DF5A99 /* LibraryInteractor.swift in Sources */,
 				CE7AB74023CE0AF900CF9EF8 /* PlayListView.swift in Sources */,

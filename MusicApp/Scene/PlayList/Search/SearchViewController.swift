@@ -24,16 +24,18 @@ class SearchViewController: PlayListViewController {
     
     // MARK: - Properties
 
-    private(set) var input: SearchInput!
-    private(set) var output: SearchOutput!
-    private var interactor: SearchInteractorLogic!
+    let input: SearchInput
+    let output: SearchOutput
+    private let interactor: SearchInteractorLogic
     private var timer: Timer?
 
     // MARK: - Init
-    
-    init(libraryService: LibraryService) {
+
+    init(interactor: SearchInteractorLogic, input: SearchInput, output: SearchOutput) {
+        self.interactor = interactor
+        self.input = input
+        self.output = output
         super.init(nibName: nil, bundle: nil)
-        setupScene(libraryService: libraryService)
     }
     
     required init?(coder: NSCoder) {
@@ -44,16 +46,6 @@ class SearchViewController: PlayListViewController {
     
     deinit {
         interactor.prepareForRemove()
-    }
-    
-    // MARK: Setup scene
-    
-    private func setupScene(libraryService: LibraryService) {
-        let presenter = SearchPresenter(viewController: self)
-        let interactor = SearchInteractor(presenter: presenter, libraryService: libraryService)
-        self.interactor = interactor
-        self.input = interactor
-        self.output = interactor
     }
 
     // MARK: - View lifecycle

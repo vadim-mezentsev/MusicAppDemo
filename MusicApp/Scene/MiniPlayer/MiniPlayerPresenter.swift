@@ -22,7 +22,7 @@ class MiniPlayerPresenter: MiniPlayerPresenterLogic {
 
     // MARK: - Init
     
-    init(viewController: MiniPlayerDisplayLogic) {
+    init(viewController: MiniPlayerDisplayLogic? = nil) {
         self.viewController = viewController
     }
 

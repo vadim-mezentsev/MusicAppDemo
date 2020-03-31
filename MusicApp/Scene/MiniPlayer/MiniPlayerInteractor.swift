@@ -28,7 +28,7 @@ class MiniPlayerInteractor: MiniPlayerInteractorLogic, MiniPlayerInput, MiniPlay
     
     // MARK: - Properties
     
-    private var presenter: MiniPlayerPresenterLogic!
+    private let presenter: MiniPlayerPresenterLogic
     private weak var player: PlayerService?
     
     // MARK: - Init

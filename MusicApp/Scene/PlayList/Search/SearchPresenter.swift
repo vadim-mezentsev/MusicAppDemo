@@ -26,7 +26,7 @@ class SearchPresenter: SearchPresenterLogic {
 
     // MARK: - Init
     
-    init(viewController: SearchViewDisplayLogic) {
+    init(viewController: SearchViewDisplayLogic? = nil) {
         self.viewController = viewController
     }
 

@@ -27,9 +27,9 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: - Properties
     
-    private(set) var input: MiniPlayerInput!
-    private(set) var output: MiniPlayerOutput!
-    private var interactor: MiniPlayerInteractorLogic!
+    let input: MiniPlayerInput
+    let output: MiniPlayerOutput
+    private let interactor: MiniPlayerInteractorLogic
     private var state: MiniPlayerViewController.State! {
         didSet {
             changeState(to: state)
@@ -44,23 +44,15 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: - Init
     
-    init(playerService: PlayerService) {
+    init(interactor: MiniPlayerInteractorLogic, input: MiniPlayerInput, output: MiniPlayerOutput) {
+        self.interactor = interactor
+        self.input = input
+        self.output = output
         super.init(nibName: nil, bundle: nil)
-        setupScene(playerService: playerService)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Storyboard not supported")
-    }
-    
-    // MARK: Setup scene
-    
-    private func setupScene(playerService: PlayerService) {
-        let presenter = MiniPlayerPresenter(viewController: self)
-        let interactor = MiniPlayerInteractor(presenter: presenter, playerService: playerService)
-        self.interactor = interactor
-        self.input = interactor
-        self.output = interactor
     }
     
     // MARK: - View lifecycle

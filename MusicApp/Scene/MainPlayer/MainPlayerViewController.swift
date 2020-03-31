@@ -27,9 +27,9 @@ class MainPlayerViewController: UIViewController {
     
     // MARK: - Properties
     
-    private(set) var input: MainPlayerInput!
-    private(set) var output: MainPlayerOutput!
-    private var interactor: MainPlayerInteractorLogic!
+    let input: MainPlayerInput
+    let output: MainPlayerOutput
+    private let interactor: MainPlayerInteractorLogic
     private var state: MainPlayerViewController.State! {
         didSet {
             changeState(to: state)
@@ -43,24 +43,16 @@ class MainPlayerViewController: UIViewController {
     }
     
     // MARK: - Init
-    
-    init(playerService: PlayerService) {
+
+    init(interactor: MainPlayerInteractorLogic, input: MainPlayerInput, output: MainPlayerOutput) {
+        self.interactor = interactor
+        self.input = input
+        self.output = output
         super.init(nibName: nil, bundle: nil)
-        setupScene(playerService: playerService)
     }
     
     required init?(coder: NSCoder) {
         fatalError("Storyboard not supported")
-    }
-    
-    // MARK: Setup scene
-    
-    private func setupScene(playerService: PlayerService) {
-        let presenter = MainPlayerPresenter(viewController: self)
-        let interactor = MainPlayerInteractor(presenter: presenter, playerService: playerService)
-        self.interactor = interactor
-        self.input = interactor
-        self.output = interactor
     }
     
     // MARK: - View lifecycle

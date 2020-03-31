@@ -14,7 +14,7 @@ class PlayListView: UIView {
     
     let tableViewRowHeight: CGFloat = 84
     let tableViewBottomInset: CGFloat = 252
-    let defaultHintLabelText: String = ""
+    var defaultHintLabelText: String = ""
     
     // MARK: - Interface properties
 

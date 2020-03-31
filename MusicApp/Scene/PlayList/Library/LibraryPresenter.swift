@@ -26,7 +26,7 @@ class LibraryPresenter: LibraryPresenterLogic {
 
     // MARK: - Init
     
-    init(viewController: LibraryViewDisplayLogic) {
+    init(viewController: LibraryViewDisplayLogic? = nil) {
         self.viewController = viewController
     }
 

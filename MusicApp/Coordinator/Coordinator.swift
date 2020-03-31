@@ -61,7 +61,7 @@ class MainCoordinator: Coordinator {
     // MARK: - SearchViewController setup
     
     private func createSearchViewController() -> SearchViewController {
-        let searchViewController = SearchViewController(libraryService: library)
+        let searchViewController = SearchBuilder(libraryService: library).build()
         searchViewController.output.playTrackHandler = searchViewControllerPlayTrackHandler
         return searchViewController
     }
@@ -75,7 +75,7 @@ class MainCoordinator: Coordinator {
     // MARK: - LibraryViewController setup
     
     private func createLibraryViewController() -> LibraryViewController {
-        let libraryViewController = LibraryViewController(libraryService: library)
+        let libraryViewController = LibraryBuilder(libraryService: library).build()
         libraryViewController.output.playTrackHandler = libraryViewControllerPlayTrackHandler
         return libraryViewController
     }
@@ -89,7 +89,7 @@ class MainCoordinator: Coordinator {
     // MARK: - MainPlayerViewController setup
     
     private func createMainPlayerViewController() -> MainPlayerViewController {
-        let mainPlayerViewController = MainPlayerViewController(playerService: player)
+        let mainPlayerViewController = MainPlayerBuilder(playerService: player).build()
         mainPlayerViewController.output.playNextTrackHandler = mainPlayerViewControllerPlayNextTrackHandler
         mainPlayerViewController.output.playPreviousTrackHandler = mainPlayerViewControllerPlayPreviousTrackHandler
         return mainPlayerViewController
@@ -106,7 +106,7 @@ class MainCoordinator: Coordinator {
     // MARK: - MiniPlayerViewController setup
     
     private func createMiniPlayerViewController() -> MiniPlayerViewController {
-        let miniPlayerViewController = MiniPlayerViewController(playerService: player)
+        let miniPlayerViewController = MiniPlayerBuilder(playerService: player).build()
         miniPlayerViewController.output.playNextTrackHandler = miniPlayerViewControllerPlayNextTrackHandler
         miniPlayerViewController.output.showMainPlayerHandler = miniPlayerViewControllerShowMainPlayerHandler
         return miniPlayerViewController
